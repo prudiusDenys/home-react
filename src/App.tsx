@@ -8,7 +8,7 @@ export type dialogsDataType = {
 	text: string
 }
 
-function App(props: any) {
+function App() {
 
 	const dialogsData: Array<dialogsDataType> = [
 		{id: 1, name: 'Denis', text: 'npm start нажимал ?'},
