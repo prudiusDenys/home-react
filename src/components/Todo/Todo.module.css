@@ -1,0 +1,106 @@
+.todo{
+  position: relative;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 0 30px 30px 30px;
+  max-width: 300px;
+}
+h2{
+  text-align: center;
+}
+.listItem{
+  margin-bottom: 30px;
+}
+.item{
+  width: 100%;
+  list-style-type: disc;
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 20px;
+  background-color: aliceblue;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item input{
+  margin-right: 10px;
+}
+
+.item button{
+background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+.item button:hover{
+  background: red;
+  color: white;
+  transition: all 0.3s;
+  border-radius: 5px;
+}
+
+.btns{
+  width: 100%;
+}
+.btns button{
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 5px 0;
+  font-size: 16px;
+  border: none;
+  outline: none;
+}
+.btns button:hover{
+  background-color: #b5e61b;
+  color: #fff;
+  transition: all 0.3s;
+}
+.inputWrapper{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+}
+.input{
+  display: none;
+  position: relative;
+  border: 2px solid black;
+}
+.input.active{
+  display: block;
+}
+.input input{
+  width: 100%;
+  padding: 10px 50px 10px 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+.input button{
+  position: absolute;
+  bottom: 25px;
+  right: 0;
+  font-size: 30px;
+  height: 45%;
+  width: 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.input h3 {
+  background-color: #b5e61b;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+  padding: 0 10px;
+  height: 50%;
+}
+.input .close{
+  cursor: pointer;
+}
+

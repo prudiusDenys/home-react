@@ -23,6 +23,7 @@ body.lock {
 body {
   overflow-x: hidden;
   min-width: 320px;
+  padding-left: 30px;
 }
 
 a {
