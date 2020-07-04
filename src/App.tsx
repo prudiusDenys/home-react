@@ -14,6 +14,7 @@ export type TasksType = {
 	id: string
 	item: string
 	isDone: boolean
+	importance: string
 }
 
 function App() {
@@ -27,30 +28,44 @@ function App() {
 	// =============================== HOME WORK NUMBER 2 ====================================
 
 	let [tasks, setTasks] = useState<Array<TasksType>>([
-		{id: v1(), item: 'React', isDone: false},
-		{id: v1(), item: 'Английский', isDone: true},
-		{id: v1(), item: 'JS', isDone: true},
-		{id: v1(), item: 'TypeScript', isDone: false},
-		{id: v1(), item: 'JestTests', isDone: false}
+		{id: v1(), item: 'React', isDone: false, importance: 'height'},
+		{id: v1(), item: 'Английский', isDone: true, importance: 'medium'},
+		{id: v1(), item: 'JS', isDone: true, importance: 'height'},
+		{id: v1(), item: 'TypeScript', isDone: false, importance: 'medium'},
+		{id: v1(), item: 'JestTests', isDone: false, importance: 'low'}
 	])
 
 	let [filterTask, setFilterTask] = useState('all');
 
 	let addNewTask = (newTaskValue: string) => {
-		let newTasks = [{id: v1(), item: newTaskValue, isDone: false}, ...tasks]
+		let newTasks = [{id: v1(), item: newTaskValue, isDone: false, importance: 'height'}, ...tasks]
 		setTasks(newTasks);
 	}
-
 	let changeTasks = (valueNewFilter: string) => setFilterTask(valueNewFilter);
-
 	let deleteTask = (idValue: string) => {
 		tasks = tasks.filter(t => t.id !== idValue)
 		setTasks(tasks)
 	}
+	let changeImportance = (importanceValue: string) => setFilterTask(importanceValue)
 
 	let newFilteredTasks = tasks
-	if (filterTask === 'active') newFilteredTasks = tasks.filter(t => !t.isDone);
-	if (filterTask === 'completed') newFilteredTasks = tasks.filter(t => t.isDone);
+	switch (filterTask) {
+		case 'active':
+			newFilteredTasks = tasks.filter(t => !t.isDone)
+			break;
+		case 'completed':
+			newFilteredTasks = tasks.filter(t => t.isDone);
+			break;
+		case 'height':
+			newFilteredTasks = tasks.filter((t=>t.importance === 'height'))
+			break;
+		case 'medium':
+			newFilteredTasks = tasks.filter((t=>t.importance === 'medium'))
+			break;
+		case 'low':
+			newFilteredTasks = tasks.filter((t=>t.importance === 'low'))
+			break;
+	}
 
 	return (
 		<div>
@@ -60,7 +75,8 @@ function App() {
 							tasks={newFilteredTasks}
 							changeTasks={changeTasks}
 							addNewTask={addNewTask}
-							deleteTask={deleteTask}/>
+							deleteTask={deleteTask}
+							changeImportance = {changeImportance}/>
 			</div>
 		</div>
 

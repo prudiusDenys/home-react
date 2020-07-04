@@ -8,6 +8,7 @@ type PropsType = {
 	changeTasks: (value: string) => void;
 	addNewTask: (value: string) => void;
 	deleteTask: (idValue: string) => void;
+	changeImportance: (importanceValue: string) => void;
 }
 
 const Todo = (props: PropsType) => {
@@ -29,6 +30,10 @@ const Todo = (props: PropsType) => {
 		props.addNewTask(value)
 		setValue('');
 	};
+	let showImportanceTasks = ()=>props.changeImportance('height');
+	let showMediumTasks = ()=>props.changeImportance('medium');
+	let showLowTasks = ()=>props.changeImportance('low');
+
 
 	let onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
 		if (e.charCode === 13) {
@@ -52,6 +57,9 @@ const Todo = (props: PropsType) => {
 				<button onClick={showAllTasks}>All tasks</button>
 				<button onClick={showActiveTasks}>Active Tasks</button>
 				<button onClick={showCompletedTasks}>Completed Tasks</button>
+				<button onClick={showImportanceTasks}>Important</button>
+				<button onClick={showMediumTasks}>Medium importance</button>
+				<button onClick={showLowTasks}>Low important</button>
 				<button onClick={showAddBlock}>Add Task</button>
 			</div>
 			<div className={classes.inputWrapper}>
