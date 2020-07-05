@@ -66,13 +66,10 @@ background: none;
   width: 90%;
 }
 .input{
-  display: none;
   position: relative;
   border: 2px solid black;
 }
-.input.active{
-  display: block;
-}
+
 .input input{
   width: 100%;
   padding: 10px 50px 10px 10px;

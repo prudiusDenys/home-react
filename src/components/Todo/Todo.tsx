@@ -33,8 +33,6 @@ const Todo = (props: PropsType) => {
 	let showImportanceTasks = ()=>props.changeImportance('height');
 	let showMediumTasks = ()=>props.changeImportance('medium');
 	let showLowTasks = ()=>props.changeImportance('low');
-
-
 	let onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
 		if (e.charCode === 13) {
 			props.addNewTask(value)
@@ -42,9 +40,10 @@ const Todo = (props: PropsType) => {
 		}
 	}
 
-	let inputRef = React.createRef<any>()
-	let showAddBlock = () => inputRef.current.classList.toggle(classes.active);
-	let hideAddBlock = () => inputRef.current.classList.remove(classes.active);
+	let [active, setActive] = useState(false);
+	let showAddBlock = () => setActive(true);
+	let hideAddBlock = () => setActive(false);
+	const showDisplay = {display: active ? 'block' : 'none'};
 
 
 	return (
@@ -60,10 +59,10 @@ const Todo = (props: PropsType) => {
 				<button onClick={showImportanceTasks}>Important</button>
 				<button onClick={showMediumTasks}>Medium importance</button>
 				<button onClick={showLowTasks}>Low important</button>
-				<button onClick={showAddBlock}>Add Task</button>
+				<button onClick={showAddBlock} >Add Task</button>
 			</div>
-			<div className={classes.inputWrapper}>
-				<div className={classes.input} ref={inputRef}>
+			<div className={classes.inputWrapper} >
+				<div className={classes.input} style={showDisplay} >
 					<h3>Add New Task</h3>
 					<input value={value} onChange={onChangeHandler} onKeyPress={onKeyPressHandler} type="text"/>
 					<button onClick={addTaskHandler} className={classes.TaskAdd}>+</button>
