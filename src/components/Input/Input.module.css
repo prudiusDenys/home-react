@@ -1,0 +1,45 @@
+.inputWrapper{
+  margin-bottom: 100px;
+}
+.inputBox{
+  display: flex;
+}
+.inputBox button{
+  margin-left: 10px;
+  padding: 10px 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 10px;
+}
+.inputBox button:hover{
+  background-color: chocolate;
+  color: white;
+  transition: all 0.3s;
+}
+
+.inputBox input{
+  border: none;
+  padding: 0 10px;
+  font-size: 16px;
+  outline: none;
+  border-radius: 10px;
+
+}
+.inputBox input:focus{
+  transition: all 0.3s;
+  box-shadow: 0 0 10px black;
+}
+
+.names{
+  margin-top: 10px;
+}
+
+input.unCorrect{
+  background-color: red;
+  color: white
+}
+input.correct{
+  background-color: #b5e61b;
+}

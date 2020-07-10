@@ -41,10 +41,9 @@ const Todo = (props: PropsType) => {
 	}
 
 	let [active, setActive] = useState(false);
-	let showAddBlock = () => setActive(true);
+	let showAddBlock = () => setActive(!active);
 	let hideAddBlock = () => setActive(false);
 	const showDisplay = {display: active ? 'block' : 'none'};
-
 
 	return (
 		<div className={classes.todo}>

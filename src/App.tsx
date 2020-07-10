@@ -3,18 +3,22 @@ import './App.css';
 import Dialogs from "./components/Dialogs/Dialogs";
 import Todo from "./components/Todo/Todo";
 import {v1} from "uuid";
+import {Input} from "./components/Input/Input";
 
 export type dialogsDataType = {
 	id: number,
 	name: string,
 	text: string
 }
-
 export type TasksType = {
 	id: string
 	item: string
 	isDone: boolean
 	importance: string
+}
+export type NamesData = {
+	id: string
+	name: string
 }
 
 function App() {
@@ -57,14 +61,32 @@ function App() {
 			newFilteredTasks = tasks.filter(t => t.isDone);
 			break;
 		case 'height':
-			newFilteredTasks = tasks.filter((t=>t.importance === 'height'))
+			newFilteredTasks = tasks.filter((t => t.importance === 'height'))
 			break;
 		case 'medium':
-			newFilteredTasks = tasks.filter((t=>t.importance === 'medium'))
+			newFilteredTasks = tasks.filter((t => t.importance === 'medium'))
 			break;
 		case 'low':
-			newFilteredTasks = tasks.filter((t=>t.importance === 'low'))
+			newFilteredTasks = tasks.filter((t => t.importance === 'low'))
 			break;
+	}
+
+	// =============================== HOME WORK NUMBER 3 ====================================
+
+	let [value, setValue] = useState('')
+	let [namesData, setNamesData] = useState([{id: v1(), name: value}])
+	let [warningValue, setWarningValue] = useState(false);
+
+
+	let showMessage = (value: string) => {
+		alert(`Hello ${value}`);
+		let newName = [...namesData, {id: v1(), name: value}]
+		setNamesData(newName)
+		setWarningValue(false)
+	};
+	let showWarning = () => {
+		alert("You didn't enter any text");
+		setWarningValue(true)
 	}
 
 	return (
@@ -76,7 +98,14 @@ function App() {
 							changeTasks={changeTasks}
 							addNewTask={addNewTask}
 							deleteTask={deleteTask}
-							changeImportance = {changeImportance}/>
+							changeImportance={changeImportance}/>
+				<Input value={value}
+							 setValue={setValue}
+							 showMessage={showMessage}
+							 showWarning={showWarning}
+							 namesData={namesData}
+							 setWarningValue={setWarningValue}
+							 warningValue={warningValue}/>
 			</div>
 		</div>
 
