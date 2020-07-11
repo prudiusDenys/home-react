@@ -40,7 +40,7 @@ export const Input = (props: PropsType) => {
 				<button onClick={onClickBtnHandler}>Say Hello</button>
 			</div>
 			<div className={classes.names}>
-				Number of names = {props.namesData.length - 1}
+				Number of names = {props.namesData.length}
 			</div>
 		</div>
 	)

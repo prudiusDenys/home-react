@@ -17,8 +17,8 @@ export type TasksType = {
 	importance: string
 }
 export type NamesData = {
-	id: string
-	name: string
+	id?: string
+	name?: string
 }
 
 function App() {
@@ -74,7 +74,7 @@ function App() {
 	// =============================== HOME WORK NUMBER 3 ====================================
 
 	let [value, setValue] = useState('')
-	let [namesData, setNamesData] = useState([{id: v1(), name: value}])
+	let [namesData, setNamesData] = useState<Array<{ id: string, name: string }>>([])
 	let [warningValue, setWarningValue] = useState(false);
 
 
@@ -108,7 +108,6 @@ function App() {
 							 warningValue={warningValue}/>
 			</div>
 		</div>
-
 	);
 }
 
