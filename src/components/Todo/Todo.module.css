@@ -59,6 +59,22 @@ background: none;
   color: #fff;
   transition: all 0.3s;
 }
+
+.active{
+  background-color: #b5e61b;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.completedTask {
+  opacity: 0.5;
+}
+.error{
+  background-color: indianred;
+}
+.errorText {
+color: red;
+}
 .inputWrapper{
   position: absolute;
   top: 30%;
@@ -71,6 +87,10 @@ background: none;
   border: 2px solid black;
 }
 
+input::placeholder{
+  font-size: 15px;
+}
+
 .input input{
   width: 100%;
   padding: 10px 50px 10px 10px;
@@ -81,10 +101,10 @@ background: none;
 }
 .input button{
   position: absolute;
-  bottom: 25px;
+  bottom: 24px;
   right: 0;
   font-size: 30px;
-  height: 45%;
+  height: 46%;
   width: 40px;
   border: none;
   outline: none;

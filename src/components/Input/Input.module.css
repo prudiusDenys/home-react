@@ -33,7 +33,7 @@
 }
 
 .names{
-  margin-top: 10px;
+  margin: 0 0 10px 10px;
 }
 
 input.unCorrect{
@@ -42,4 +42,8 @@ input.unCorrect{
 }
 input.correct{
   background-color: #b5e61b;
+}
+.error{
+  margin: 10px 0 0 10px;
+  color: red;
 }

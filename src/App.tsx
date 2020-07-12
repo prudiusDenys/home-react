@@ -40,10 +40,10 @@ function App() {
 	])
 
 	let [filterTask, setFilterTask] = useState('all');
+	let [error, setError] = useState<string | null>(null);
 
 	let addNewTask = (newTaskValue: string) => {
-		let newTasks = [{id: v1(), item: newTaskValue, isDone: false, importance: 'height'}, ...tasks]
-		setTasks(newTasks);
+		setTasks([{id: v1(), item: newTaskValue, isDone: false, importance: 'height'}, ...tasks]);
 	}
 	let changeTasks = (valueNewFilter: string) => setFilterTask(valueNewFilter);
 	let deleteTask = (idValue: string) => {
@@ -51,6 +51,13 @@ function App() {
 		setTasks(tasks)
 	}
 	let changeImportance = (importanceValue: string) => setFilterTask(importanceValue)
+	let changeStatus = (idValue: string, isDone: boolean) => {
+		let task = tasks.find(t => t.id === idValue)
+		if (task) {
+			task.isDone = isDone;
+			setTasks([...tasks])
+		}
+	}
 
 	let newFilteredTasks = tasks
 	switch (filterTask) {
@@ -73,9 +80,9 @@ function App() {
 
 	// =============================== HOME WORK NUMBER 3 ====================================
 
-	let [value, setValue] = useState('')
+	let [value, setValue] = useState<string>('')
 	let [namesData, setNamesData] = useState<Array<{ id: string, name: string }>>([])
-	let [warningValue, setWarningValue] = useState(false);
+	let [warningValue, setWarningValue] = useState<boolean>(false);
 
 
 	let showMessage = (value: string) => {
@@ -84,10 +91,6 @@ function App() {
 		setNamesData(newName)
 		setWarningValue(false)
 	};
-	let showWarning = () => {
-		alert("You didn't enter any text");
-		setWarningValue(true)
-	}
 
 	return (
 		<div>
@@ -98,11 +101,14 @@ function App() {
 							changeTasks={changeTasks}
 							addNewTask={addNewTask}
 							deleteTask={deleteTask}
-							changeImportance={changeImportance}/>
+							changeImportance={changeImportance}
+							changeStatus={changeStatus}
+							filterTask={filterTask}
+							error={error}
+							setError={setError}/>
 				<Input value={value}
 							 setValue={setValue}
 							 showMessage={showMessage}
-							 showWarning={showWarning}
 							 namesData={namesData}
 							 setWarningValue={setWarningValue}
 							 warningValue={warningValue}/>
