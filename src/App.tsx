@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import './App.css';
 import Dialogs from "./components/Dialogs/Dialogs";
 import Todo from "./components/Todo/Todo";
 import {v1} from "uuid";
-import {Input} from "./components/Input/Input";
+import {PresentationComponent} from "./components/PresentationComponent/PresentationComponent";
+import {Button} from "./common/Button/Button";
+import {Input} from "./common/Input/Input";
+import {NamesNumber} from "./components/NamesNumber/NamesNumber";
 
 export type dialogsDataType = {
 	id: number,
@@ -38,7 +41,6 @@ function App() {
 		{id: v1(), item: 'TypeScript', isDone: false, importance: 'medium'},
 		{id: v1(), item: 'JestTests', isDone: false, importance: 'low'}
 	])
-
 	let [filterTask, setFilterTask] = useState('all');
 	let [error, setError] = useState<string | null>(null);
 
@@ -78,19 +80,39 @@ function App() {
 			break;
 	}
 
-	// =============================== HOME WORK NUMBER 3 ====================================
-
-	let [value, setValue] = useState<string>('')
+	// =============================== HOME WORK NUMBER 3 and 4 ====================================
+	const type = 'text'
+	let [valueInp, setValueInp] = useState('')
+	let [correctField, setCorrectField] = useState(true)
 	let [namesData, setNamesData] = useState<Array<{ id: string, name: string }>>([])
-	let [warningValue, setWarningValue] = useState<boolean>(false);
-
 
 	let showMessage = (value: string) => {
 		alert(`Hello ${value}`);
 		let newName = [...namesData, {id: v1(), name: value}]
 		setNamesData(newName)
-		setWarningValue(false)
 	};
+	let onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+		setValueInp(e.currentTarget.value)
+		setCorrectField(true)
+	}
+	let onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+		if (e.charCode === 13 && e.currentTarget.value.trim() !== '') {
+			showMessage(e.currentTarget.value.trim())
+			setValueInp('')
+		} else if (e.charCode === 13 && e.currentTarget.value.trim() === '') {
+			setCorrectField(false)
+			setValueInp('')
+		}
+	}
+	let onClickBtnHandler = () => {
+		if (valueInp.trim() !== '') {
+			showMessage(valueInp.trim())
+			setValueInp('')
+		} else {
+			setCorrectField(false)
+			setValueInp('')
+		}
+	}
 
 	return (
 		<div>
@@ -106,12 +128,19 @@ function App() {
 							filterTask={filterTask}
 							error={error}
 							setError={setError}/>
-				<Input value={value}
-							 setValue={setValue}
-							 showMessage={showMessage}
-							 namesData={namesData}
-							 setWarningValue={setWarningValue}
-							 warningValue={warningValue}/>
+				<div className={'wrapper'}>
+					<Input valueInp={valueInp}
+								 setValueInp={setValueInp}
+								 correctField={correctField}
+								 setCorrectField={setCorrectField}
+								 onChangeHandler={onChangeHandler}
+								 onKeyPressHandler={onKeyPressHandler}
+								 type={'text'} placeholderDefault={'Write your name'}/>
+					<Button onClickBtnHandler={onClickBtnHandler}
+									title={'SAY HELLO'} typeOfButton={'delete'}/>
+				</div>
+				<NamesNumber namesData={namesData}/>
+				<PresentationComponent/>
 			</div>
 		</div>
 	);

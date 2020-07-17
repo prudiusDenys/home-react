@@ -1,0 +1,27 @@
+.box{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  outline: none;
+  border-radius: 5px;
+  background-color: #b5e61b;
+  cursor: pointer;
+}
+.check{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 2px;
+  background-color: black;
+}
+
+.check:nth-child(1){
+  top:50%;
+  left: 2px;
+  transform: rotate(45deg);
+}
+.check:nth-child(2){
+  top:50%;
+  left: 9px;
+  transform: rotate(-45deg);
+}

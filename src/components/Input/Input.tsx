@@ -16,7 +16,6 @@ export const Input = (props: PropsType) => {
 	let onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		props.setValue(e.currentTarget.value)
 		props.setWarningValue(false)
-
 	}
 
 	let onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {

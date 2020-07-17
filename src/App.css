@@ -44,3 +44,7 @@ li {
   margin: 0 auto;
   padding: 0 10px;
 }
+.wrapper{
+  display: flex;
+  margin-bottom: 20px;
+}

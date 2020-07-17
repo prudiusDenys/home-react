@@ -1,0 +1,20 @@
+.btn {
+  margin-left: 10px;
+  padding: 10px 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.btn:hover {
+  background-color: chocolate;
+  color: white;
+  transition: all 0.3s;
+}
+
+.cngBtn{
+  background-color: red;
+  color: white;
+}
