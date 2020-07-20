@@ -135,9 +135,9 @@ function App() {
 								 setCorrectField={setCorrectField}
 								 onChangeHandler={onChangeHandler}
 								 onKeyPressHandler={onKeyPressHandler}
-								 type={'text'} placeholderDefault={'Write your name'}/>
+								 placeholderDefault={'Write your name'}/>
 					<Button onClickBtnHandler={onClickBtnHandler}
-									title={'SAY HELLO'} typeOfButton={'delete'}/>
+									title={'SAY HELLO'} typeOfButton={'red'}/>
 				</div>
 				<NamesNumber namesData={namesData}/>
 				<PresentationComponent/>

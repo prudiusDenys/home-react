@@ -46,7 +46,6 @@ export const PresentationComponent = () => {
 							 setCorrectField={setCorrectField}
 							 onChangeHandler={onChangeHandler}
 							 onKeyPressHandler={onKeyPressHandler}
-							 type={'text'}
 							 placeholderDefault={''}/>
 				<Button onClickBtnHandler={onClickBtnHandler}
 								title={'SEND'}/>

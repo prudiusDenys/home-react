@@ -8,7 +8,6 @@ type PropsType = {
 	setCorrectField: (correctField: boolean) => void
 	onChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void
 	onKeyPressHandler: (e: KeyboardEvent<HTMLInputElement>) => void
-	type: string
 	placeholderDefault?: string
 }
 
@@ -20,7 +19,7 @@ export const Input = (props: PropsType) => {
 						 onKeyPress={props.onKeyPressHandler}
 						 value={props.valueInp}
 						 placeholder={!props.correctField ? 'This field must be filled' : props.placeholderDefault}
-						 type={props.type}/>
+						 type='text'/>
 		</div>
 	)
 }

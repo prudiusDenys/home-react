@@ -41,8 +41,12 @@ export const Input = (props: PropsType) => {
 				Number of names = {props.namesData.length}
 			</div>
 			<div className={classes.inputBox}>
-				<input className={(props.warningValue) ? classes.unCorrect : classes.correct} onChange={onChangeHandler}
-							 onKeyPress={onKeyPressHandler} value={props.value} placeholder={'Write your name'} type="text"/>
+				<input className={(props.warningValue) ? classes.unCorrect : classes.correct}
+							 onChange={onChangeHandler}
+							 onKeyPress={onKeyPressHandler}
+							 value={props.value}
+							 placeholder={'Write your name'}
+							 type="text"/>
 				<button onClick={onClickBtnHandler}>Say Hello</button>
 			</div>
 			{props.warningValue && <div className={classes.error}>Please write your name!</div>}
