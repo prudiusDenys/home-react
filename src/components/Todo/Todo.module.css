@@ -3,7 +3,7 @@
   border: 2px solid black;
   border-radius: 5px;
   padding: 0 30px 30px 30px;
-  max-width: 300px;
+  width: 300px;
   margin: 100px 0;
 }
 h2{
@@ -120,5 +120,17 @@ input::placeholder{
 }
 .input .close{
   cursor: pointer;
+}
+
+.deleteTitle{
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 10px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  border: none;
+  outline: none;
 }
 

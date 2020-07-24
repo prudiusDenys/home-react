@@ -23,6 +23,13 @@ export type NamesData = {
 	id?: string
 	name?: string
 }
+export type FilterTaskType = 'all' | 'active' | 'completed' | 'height' | 'medium' | 'low';
+export type TodoListType = {
+	id: string
+	title: string
+	filterTask: FilterTaskType
+}
+
 
 function App() {
 
@@ -34,51 +41,100 @@ function App() {
 
 	// =============================== HOME WORK NUMBER 2 ====================================
 
-	let [tasks, setTasks] = useState<Array<TasksType>>([
-		{id: v1(), item: 'React', isDone: false, importance: 'height'},
-		{id: v1(), item: 'Английский', isDone: true, importance: 'medium'},
-		{id: v1(), item: 'JS', isDone: true, importance: 'height'},
-		{id: v1(), item: 'TypeScript', isDone: false, importance: 'medium'},
-		{id: v1(), item: 'JestTests', isDone: false, importance: 'low'}
-	])
-	let [filterTask, setFilterTask] = useState('all');
-	let [error, setError] = useState<string | null>(null);
 
-	let addNewTask = (newTaskValue: string) => {
-		setTasks([{id: v1(), item: newTaskValue, isDone: false, importance: 'height'}, ...tasks]);
+	let reference1 = v1();
+	let reference2 = v1();
+
+	let [todoLists, setTodoLists] = useState<Array<TodoListType>>([
+		{id: reference1, title: 'My first Todo list', filterTask: 'all'},
+		{id: reference2, title: 'My second Todo list', filterTask: 'completed'}
+	])
+	let [tasks, setTasks] = useState({
+		[reference1]:
+			[
+				{id: v1(), item: 'React', isDone: false, importance: 'height'},
+				{id: v1(), item: 'Английский', isDone: true, importance: 'medium'},
+				{id: v1(), item: 'JS', isDone: true, importance: 'height'},
+				{id: v1(), item: 'TypeScript', isDone: false, importance: 'medium'},
+				{id: v1(), item: 'JestTests', isDone: false, importance: 'low'}
+			],
+		[reference2]: [
+			{id: v1(), item: 'German', isDone: true, importance: 'height'},
+			{id: v1(), item: 'English', isDone: true, importance: 'medium'},
+			{id: v1(), item: 'Spain', isDone: false, importance: 'height'},
+			{id: v1(), item: 'Chinese', isDone: false, importance: 'medium'},
+		]
+	})
+
+	let addNewTask = (newTaskValue: string, todoListId: string) => {
+		tasks[todoListId] = [{id: v1(), item: newTaskValue, isDone: false, importance: 'height'}, ...tasks[todoListId]]
+		setTasks({...tasks});
+
 	}
-	let changeTasks = (valueNewFilter: string) => setFilterTask(valueNewFilter);
-	let deleteTask = (idValue: string) => {
-		tasks = tasks.filter(t => t.id !== idValue)
-		setTasks(tasks)
+	let changeTasks = (valueNewFilter: FilterTaskType, todoListId: string) => {
+		let todoList = todoLists.find(tl => tl.id === todoListId);
+		if (todoList) {
+			todoList.filterTask = valueNewFilter;
+			setTodoLists([...todoLists])
+		}
+	};
+	let deleteTask = (idValue: string, todoListId: string) => {
+		tasks[todoListId] = tasks[todoListId].filter(t => t.id !== idValue)
+		setTasks({...tasks})
 	}
-	let changeImportance = (importanceValue: string) => setFilterTask(importanceValue)
-	let changeStatus = (idValue: string, isDone: boolean) => {
-		let task = tasks.find(t => t.id === idValue)
+
+	let changeStatus = (idValue: string, isDone: boolean, todoListId: string) => {
+		let todoList = tasks[todoListId]
+		let task = todoList.find(t => t.id === idValue)
 		if (task) {
 			task.isDone = isDone;
-			setTasks([...tasks])
+			setTasks({...tasks})
 		}
 	}
 
-	let newFilteredTasks = tasks
-	switch (filterTask) {
-		case 'active':
-			newFilteredTasks = tasks.filter(t => !t.isDone)
-			break;
-		case 'completed':
-			newFilteredTasks = tasks.filter(t => t.isDone);
-			break;
-		case 'height':
-			newFilteredTasks = tasks.filter((t => t.importance === 'height'))
-			break;
-		case 'medium':
-			newFilteredTasks = tasks.filter((t => t.importance === 'medium'))
-			break;
-		case 'low':
-			newFilteredTasks = tasks.filter((t => t.importance === 'low'))
-			break;
+	let removeTodoList = (todoListId: string) => {
+		let filterTodoLists = todoLists.filter(tl => tl.id !== todoListId)
+		setTodoLists(filterTodoLists)
+		delete tasks[todoListId]
+		setTasks({...tasks})
 	}
+
+
+	let todoList = todoLists.map(tl => {
+
+		let newFilteredTasks = tasks[tl.id]
+		switch (tl.filterTask) {
+			case 'active':
+				newFilteredTasks = newFilteredTasks.filter(t => !t.isDone)
+				break;
+			case 'completed':
+				newFilteredTasks = newFilteredTasks.filter(t => t.isDone);
+				break;
+			case 'height':
+				newFilteredTasks = newFilteredTasks.filter((t => t.importance === 'height'))
+				break;
+			case 'medium':
+				newFilteredTasks = newFilteredTasks.filter((t => t.importance === 'medium'))
+				break;
+			case 'low':
+				newFilteredTasks = newFilteredTasks.filter((t => t.importance === 'low'))
+				break;
+		}
+
+		return (
+			<Todo key={tl.id}
+						id={tl.id}
+						title={tl.title}
+						tasks={newFilteredTasks}
+						changeTasks={changeTasks}
+						addNewTask={addNewTask}
+						deleteTask={deleteTask}
+						changeStatus={changeStatus}
+						filterTask={tl.filterTask}
+						removeTodoList={removeTodoList}/>
+		)
+	})
+
 
 	// =============================== HOME WORK NUMBER 3 and 4 ====================================
 	const type = 'text'
@@ -118,16 +174,9 @@ function App() {
 		<div>
 			<div className="App">
 				<Dialogs dialogsData={dialogsData}/>
-				<Todo title='My Todo List'
-							tasks={newFilteredTasks}
-							changeTasks={changeTasks}
-							addNewTask={addNewTask}
-							deleteTask={deleteTask}
-							changeImportance={changeImportance}
-							changeStatus={changeStatus}
-							filterTask={filterTask}
-							error={error}
-							setError={setError}/>
+				<div className={'todoListWrapper'}>
+					{todoList}
+				</div>
 				<div className={'wrapper'}>
 					<Input valueInp={valueInp}
 								 setValueInp={setValueInp}

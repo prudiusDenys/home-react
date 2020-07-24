@@ -48,3 +48,7 @@ li {
   display: flex;
   margin-bottom: 20px;
 }
+.todoListWrapper{
+  display: flex;
+  justify-content: space-evenly;
+}
