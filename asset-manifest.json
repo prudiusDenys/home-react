@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/home-react/static/css/main.e84f392d.chunk.css",
+    "main.js": "/home-react/static/js/main.d0dfb84a.chunk.js",
+    "main.js.map": "/home-react/static/js/main.d0dfb84a.chunk.js.map",
+    "runtime-main.js": "/home-react/static/js/runtime-main.7b0974e1.js",
+    "runtime-main.js.map": "/home-react/static/js/runtime-main.7b0974e1.js.map",
+    "static/js/2.91422284.chunk.js": "/home-react/static/js/2.91422284.chunk.js",
+    "static/js/2.91422284.chunk.js.map": "/home-react/static/js/2.91422284.chunk.js.map",
+    "index.html": "/home-react/index.html",
+    "precache-manifest.da7ef52275ebc3faf4927c7baf11aa3c.js": "/home-react/precache-manifest.da7ef52275ebc3faf4927c7baf11aa3c.js",
+    "service-worker.js": "/home-react/service-worker.js",
+    "static/css/main.e84f392d.chunk.css.map": "/home-react/static/css/main.e84f392d.chunk.css.map",
+    "static/js/2.91422284.chunk.js.LICENSE.txt": "/home-react/static/js/2.91422284.chunk.js.LICENSE.txt",
+    "static/media/avatar.jpg": "/home-react/static/media/avatar.d42bbc31.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7b0974e1.js",
+    "static/js/2.91422284.chunk.js",
+    "static/css/main.e84f392d.chunk.css",
+    "static/js/main.d0dfb84a.chunk.js"
+  ]
+}
