@@ -23,7 +23,6 @@ body.lock {
 body {
   overflow-x: hidden;
   min-width: 320px;
-  padding-left: 30px;
 }
 
 a {
@@ -44,11 +43,12 @@ li {
   margin: 0 auto;
   padding: 0 10px;
 }
-.wrapper{
+.inputWrapper{
   display: flex;
   margin-bottom: 20px;
 }
 .todoListWrapper{
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }

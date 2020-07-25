@@ -1,12 +1,11 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import './App.css';
-import Dialogs from "./components/Dialogs/Dialogs";
-import Todo from "./components/Todo/Todo";
 import {v1} from "uuid";
-import {PresentationComponent} from "./components/PresentationComponent/PresentationComponent";
-import {Button} from "./common/Button/Button";
-import {Input} from "./common/Input/Input";
-import {NamesNumber} from "./components/NamesNumber/NamesNumber";
+import {HashRouter, Route} from "react-router-dom";
+import {PreJunior} from "./components/Task5/UsersPages/PreJunior";
+import {Junior} from "./components/Task5/UsersPages/Junior";
+import {JuniorPlus} from "./components/Task5/UsersPages/JuniorPlus";
+import {Home} from "./components/Task5/UsersPages/Home";
 
 export type dialogsDataType = {
 	id: number,
@@ -29,6 +28,9 @@ export type TodoListType = {
 	title: string
 	filterTask: FilterTaskType
 }
+export type TaskStateType = {
+[key:string]: Array<TasksType>
+}
 
 
 function App() {
@@ -41,7 +43,6 @@ function App() {
 
 	// =============================== HOME WORK NUMBER 2 ====================================
 
-
 	let reference1 = v1();
 	let reference2 = v1();
 
@@ -49,7 +50,7 @@ function App() {
 		{id: reference1, title: 'My first Todo list', filterTask: 'all'},
 		{id: reference2, title: 'My second Todo list', filterTask: 'completed'}
 	])
-	let [tasks, setTasks] = useState({
+	let [tasks, setTasks] = useState<TaskStateType>({
 		[reference1]:
 			[
 				{id: v1(), item: 'React', isDone: false, importance: 'height'},
@@ -82,7 +83,6 @@ function App() {
 		tasks[todoListId] = tasks[todoListId].filter(t => t.id !== idValue)
 		setTasks({...tasks})
 	}
-
 	let changeStatus = (idValue: string, isDone: boolean, todoListId: string) => {
 		let todoList = tasks[todoListId]
 		let task = todoList.find(t => t.id === idValue)
@@ -91,50 +91,12 @@ function App() {
 			setTasks({...tasks})
 		}
 	}
-
 	let removeTodoList = (todoListId: string) => {
 		let filterTodoLists = todoLists.filter(tl => tl.id !== todoListId)
 		setTodoLists(filterTodoLists)
 		delete tasks[todoListId]
 		setTasks({...tasks})
 	}
-
-
-	let todoList = todoLists.map(tl => {
-
-		let newFilteredTasks = tasks[tl.id]
-		switch (tl.filterTask) {
-			case 'active':
-				newFilteredTasks = newFilteredTasks.filter(t => !t.isDone)
-				break;
-			case 'completed':
-				newFilteredTasks = newFilteredTasks.filter(t => t.isDone);
-				break;
-			case 'height':
-				newFilteredTasks = newFilteredTasks.filter((t => t.importance === 'height'))
-				break;
-			case 'medium':
-				newFilteredTasks = newFilteredTasks.filter((t => t.importance === 'medium'))
-				break;
-			case 'low':
-				newFilteredTasks = newFilteredTasks.filter((t => t.importance === 'low'))
-				break;
-		}
-
-		return (
-			<Todo key={tl.id}
-						id={tl.id}
-						title={tl.title}
-						tasks={newFilteredTasks}
-						changeTasks={changeTasks}
-						addNewTask={addNewTask}
-						deleteTask={deleteTask}
-						changeStatus={changeStatus}
-						filterTask={tl.filterTask}
-						removeTodoList={removeTodoList}/>
-		)
-	})
-
 
 	// =============================== HOME WORK NUMBER 3 and 4 ====================================
 	const type = 'text'
@@ -171,27 +133,34 @@ function App() {
 	}
 
 	return (
-		<div>
-			<div className="App">
-				<Dialogs dialogsData={dialogsData}/>
-				<div className={'todoListWrapper'}>
-					{todoList}
+		<HashRouter>
+			<div>
+				<div className="App">
+					<div className={'pages'}>
+						<Route exact path={'/'} render={() => <Home/>}/>
+						<Route path={'/preJunior'} render={() => <PreJunior dialogsData={dialogsData}
+																																onClickBtnHandler={onClickBtnHandler}
+																																onChangeHandler={onChangeHandler}
+																																onKeyPressHandler={onKeyPressHandler}
+																																setCorrectField={setCorrectField}
+																																setValueInp={setValueInp}
+																																valueInp={valueInp}
+																																correctField={correctField}
+																																namesData={namesData}
+																																tasks={tasks}
+																																todoLists = {todoLists}
+																																removeTodoList={removeTodoList}
+																																addNewTask={addNewTask}
+																																changeStatus={changeStatus}
+																																changeTasks={changeTasks}
+																																deleteTask={deleteTask}/>
+						}/>
+						<Route path={'/junior'} render={() => <Junior/>}/>
+						<Route path={'/juniorPlus'} render={() => <JuniorPlus/>}/>
+					</div>
 				</div>
-				<div className={'wrapper'}>
-					<Input valueInp={valueInp}
-								 setValueInp={setValueInp}
-								 correctField={correctField}
-								 setCorrectField={setCorrectField}
-								 onChangeHandler={onChangeHandler}
-								 onKeyPressHandler={onKeyPressHandler}
-								 placeholderDefault={'Write your name'}/>
-					<Button onClickBtnHandler={onClickBtnHandler}
-									title={'SAY HELLO'} typeOfButton={'red'}/>
-				</div>
-				<NamesNumber namesData={namesData}/>
-				<PresentationComponent/>
 			</div>
-		</div>
+		</HashRouter>
 	);
 }
 

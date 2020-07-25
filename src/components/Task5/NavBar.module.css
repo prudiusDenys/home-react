@@ -1,0 +1,75 @@
+.navWrapper {
+  position: relative;
+  margin-bottom: 100px;
+  max-width: 400px;
+  height: 600px;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 70px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: #b5e61b;
+  transition: all 0.5s;
+  z-index: 1;
+}
+
+.menu:hover {
+  background-color: forestgreen;
+  color: #fff;
+  height: 660px;
+  width: 87px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.spanMenu {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  transition: transform 1s;
+}
+
+.spanMenuFocus {
+  transform: rotate(360deg);
+}
+
+.navList {
+  position: absolute;
+  top: 0;
+  left: -400px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #b5e61b;
+  padding: 15px;
+  width: 400px;
+  height: 600px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 0;
+  transition: left 0.5s;
+}
+
+.navLink {
+  padding: 10px 0;
+  display: block;
+  font-size: 28px;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.navLink:hover, .navLink.active {
+  background-color: white;
+  color: forestgreen;
+  transition: all 0.5s;
+}
+
+.showNav {
+  left: 0;
+}
