@@ -1,13 +1,14 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import classes from "./PreJunior.module.css";
 import {NavBar} from "../NavBar";
-import {dialogsDataType, FilterTaskType, NamesData, TaskStateType, TasksType, TodoListType} from "../../../App";
+import {dialogsDataType, FilterTaskType, NamesData, TaskStateType, TodoListType} from "../../../App";
 import Dialogs from "../../Dialogs/Dialogs";
 import {Input} from "../../../common/Input/Input";
 import {Button} from "../../../common/Button/Button";
 import {NamesNumber} from "../../NamesNumber/NamesNumber";
 import {PresentationComponent} from "../../PresentationComponent/PresentationComponent";
 import Todo from "../../Todo/Todo";
+import {AddItemForm} from "../../Todo/AddItemForm/AddItemForm";
 
 type PropsType = {
 	dialogsData: Array<dialogsDataType>
@@ -27,6 +28,7 @@ type PropsType = {
 	deleteTask: (idValue: string, todoListId: string) => void;
 	changeStatus: (idValue: string, isDone: boolean, todoListId: string) => void
 	removeTodoList: (todoListId: string) => void
+	addTodoList: (title: string)=>void
 }
 
 export const PreJunior = (props: PropsType) => {
@@ -53,24 +55,33 @@ export const PreJunior = (props: PropsType) => {
 		}
 
 		return (
-			<Todo key={tl.id}
-						id={tl.id}
-						title={tl.title}
-						tasks={newFilteredTasks}
-						changeTasks={props.changeTasks}
-						addNewTask={props.addNewTask}
-						deleteTask={props.deleteTask}
-						changeStatus={props.changeStatus}
-						filterTask={tl.filterTask}
-						removeTodoList={props.removeTodoList}/>
+			<div>
+				<Todo key={tl.id}
+							id={tl.id}
+							title={tl.title}
+							tasks={newFilteredTasks}
+							changeTasks={props.changeTasks}
+							addNewTask={props.addNewTask}
+							deleteTask={props.deleteTask}
+							changeStatus={props.changeStatus}
+							filterTask={tl.filterTask}
+							removeTodoList={props.removeTodoList}/>
+			</div>
+
 		)
 	})
+
+
 
 	return (
 		<div className={classes.wrapper}>
 			<NavBar/>
 			<Dialogs dialogsData={props.dialogsData}/>
+
 			<div className={'todoListWrapper'}>
+				<div className={classes.addNewTodoList}>
+					<AddItemForm addItem={props.addTodoList}/>
+				</div>
 				{todoList}
 			</div>
 			<div className={'inputWrapper'}>

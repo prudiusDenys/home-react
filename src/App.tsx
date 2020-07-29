@@ -98,6 +98,12 @@ function App() {
 		setTasks({...tasks})
 	}
 
+	const addTodoList = (title: string) => {
+		let todoList: TodoListType = {id:v1(), title: title, filterTask:'all'}
+		setTodoLists([todoList, ...todoLists])
+		setTasks({...tasks, [todoList.id]: []})
+	}
+
 	// =============================== HOME WORK NUMBER 3 and 4 ====================================
 	const type = 'text'
 	let [valueInp, setValueInp] = useState('')
@@ -153,7 +159,7 @@ function App() {
 																																addNewTask={addNewTask}
 																																changeStatus={changeStatus}
 																																changeTasks={changeTasks}
-																																deleteTask={deleteTask}/>
+																																deleteTask={deleteTask} addTodoList={addTodoList}/>
 						}/>
 						<Route path={'/junior'} render={() => <Junior/>}/>
 						<Route path={'/juniorPlus'} render={() => <JuniorPlus/>}/>

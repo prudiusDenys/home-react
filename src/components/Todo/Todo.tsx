@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import classes from "./Todo.module.css";
 import {FilterTaskType, TasksType} from "../../App";
+import {AddTaskInput} from "./AddTaskInput/AddTaskInput";
 
 type PropsType = {
 	id: string
@@ -16,8 +17,8 @@ type PropsType = {
 
 const Todo = (props: PropsType) => {
 
-	let [value, setValue] = useState('')
-	let [error, setError] = useState<string | null>(null);
+	const [active, setActive] = useState(false);
+	const showAddBlock = () => setActive(!active);
 
 	let elementItem = props.tasks.map(t => {
 			let onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,44 +39,16 @@ const Todo = (props: PropsType) => {
 	let showAllTasks = () => props.changeTasks('all', props.id);
 	let showActiveTasks = () => props.changeTasks('active', props.id);
 	let showCompletedTasks = () => props.changeTasks('completed', props.id);
-	let onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		setValue(e.currentTarget.value)
-		setError(null)
-	}
-	let addTaskHandler = () => {
-		if (value.trim() !== '') {
-			props.addNewTask(value, props.id)
-			setValue('');
-			setActive(false)
-		} else {
-			setError('you didn\'t enter eny character')
-		}
-	};
 	let showImportanceTasks = () => props.changeTasks('height', props.id);
 	let showMediumTasks = () => props.changeTasks('medium', props.id);
 	let showLowTasks = () => props.changeTasks('low', props.id);
-	let onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-		if (e.charCode === 13 && value.trim() !== '') {
-			props.addNewTask(value, props.id)
-			setValue('');
-			setActive(false)
-		} else {
-			setError('you didn\'t enter eny character')
-		}
-	}
 	let removeTodoListHandler = () => {
 		props.removeTodoList(props.id)
 	}
 
-	let [active, setActive] = useState(false);
-	let showAddBlock = () => setActive(!active);
-	let hideAddBlock = () => {
-		setActive(false);
-		setError(null)
-
+	let addNewTask = (title: string) => {
+		props.addNewTask(title, props.id)
 	}
-
-	const showDisplay = {display: active ? 'block' : 'none'};
 
 	return (
 		<div className={classes.todo}>
@@ -87,27 +60,24 @@ const Todo = (props: PropsType) => {
 			</ul>
 			<div className={classes.btns}>
 				<button className={props.filterTask === 'all' ? classes.active : ''} onClick={showAllTasks}>All tasks</button>
-				<button className={props.filterTask === 'active' ? classes.active : ''} onClick={showActiveTasks}>Active Tasks</button>
+				<button className={props.filterTask === 'active' ? classes.active : ''} onClick={showActiveTasks}>Active Tasks
+				</button>
 				<button className={props.filterTask === 'completed' ? classes.active : ''}
-								onClick={showCompletedTasks}>Completed Tasks</button>
+								onClick={showCompletedTasks}>Completed Tasks
+				</button>
 				<button className={props.filterTask === 'height' ? classes.active : ''}
-								onClick={showImportanceTasks}>Important</button>
+								onClick={showImportanceTasks}>Important
+				</button>
 				<button className={props.filterTask === 'medium' ? classes.active : ''} onClick={showMediumTasks}>Medium
-					importance</button>
-				<button className={props.filterTask === 'low' ? classes.active : ''} onClick={showLowTasks}>Low important</button>
+					importance
+				</button>
+				<button className={props.filterTask === 'low' ? classes.active : ''} onClick={showLowTasks}>Low important
+				</button>
 				<button className={active ? classes.active : ''} onClick={showAddBlock}>Add Task</button>
 			</div>
-			<div className={classes.inputWrapper}>
-				<div className={classes.input} style={showDisplay}>
-					<h3>Add New Task</h3>
-					<input className={error ? classes.error : ''} placeholder={error ? error : ''} type="text"
-								 value={value}
-								 onChange={onChangeHandler}
-								 onKeyPress={onKeyPressHandler}/>
-					<button onClick={addTaskHandler} className={classes.TaskAdd}>+</button>
-					<h3 className={classes.close} onClick={hideAddBlock}>close</h3>
-				</div>
-			</div>
+			<AddTaskInput addNewTask={addNewTask}
+										active={active}
+										setActive={setActive}/>
 		</div>
 	)
 }
