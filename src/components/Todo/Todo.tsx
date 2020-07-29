@@ -2,6 +2,7 @@ import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import classes from "./Todo.module.css";
 import {FilterTaskType, TasksType} from "../../App";
 import {AddTaskInput} from "./AddTaskInput/AddTaskInput";
+import {EditableSpan} from "./EditableSpan/EditableSpan";
 
 type PropsType = {
 	id: string
@@ -13,6 +14,8 @@ type PropsType = {
 	changeStatus: (idValue: string, isDone: boolean, todoListId: string) => void
 	filterTask: string
 	removeTodoList: (todoListId: string) => void
+	changeItemTask: (idValue: string, taskValue: string, todoListId: string) => void
+	changeTodoListTitle: (todoListId: string, titleValue: string,) => void
 }
 
 const Todo = (props: PropsType) => {
@@ -27,9 +30,14 @@ const Todo = (props: PropsType) => {
 			let onClickDeleteHandler = () => {
 				props.deleteTask(t.id, props.id)
 			}
+			let getNewInputValue = (inputValue: string) => {
+				props.changeItemTask(t.id, inputValue, props.id)
+			}
+
 			return (
 				<li key={t.id} className={t.isDone ? `${classes.item} ${classes.completedTask}` : classes.item}>
-					<input onChange={onChangeStatusHandler} checked={t.isDone} type="checkbox"/>{t.item}
+					<input onChange={onChangeStatusHandler} checked={t.isDone} type="checkbox"/>
+					<EditableSpan itemValue={t.item} getNewInputValue={getNewInputValue}/>
 					<button onClick={onClickDeleteHandler}>x</button>
 				</li>
 			)
@@ -45,14 +53,17 @@ const Todo = (props: PropsType) => {
 	let removeTodoListHandler = () => {
 		props.removeTodoList(props.id)
 	}
-
 	let addNewTask = (title: string) => {
 		props.addNewTask(title, props.id)
+	}
+	let getNewTitleValue = (titleValue: string) => {
+		props.changeTodoListTitle(props.id, titleValue)
 	}
 
 	return (
 		<div className={classes.todo}>
-			<h2>{props.title}
+			<h2>
+				<EditableSpan itemValue={props.title} getNewInputValue={getNewTitleValue}/>
 				<button className={classes.deleteTitle} onClick={removeTodoListHandler}>Delete ToDoList</button>
 			</h2>
 			<ul className={classes.listItem}>

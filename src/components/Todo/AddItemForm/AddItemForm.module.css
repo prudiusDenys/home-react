@@ -1,38 +1,49 @@
-.inputWrapper{
-
-}
-.input{
-	position: relative;
-	border: 2px solid black;
+.wrapper {
+  display: flex;
 }
 
-input::placeholder{
-	font-size: 15px;
+input::placeholder {
+  font-size: 15px;
 }
 
-.input input{
-	width: 100%;
-	padding: 10px 50px 10px 10px;
-	font-size: 18px;
-	border-radius: 5px;
-	outline: none;
-	border: none;
-}
-.input button{
-	position: absolute;
-	bottom: 24px;
-	right: 0;
-	font-size: 30px;
-	height: 46%;
-	width: 40px;
-	border: none;
-	outline: none;
-	cursor: pointer;
+.inputValue, .error {
+  width: 250px;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid black;
+  transition: all 0.5s;
 }
 
-.error{
-	background-color: indianred;
+.inputValue:focus {
+  border: none;
+  background-color: #b5e61b;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+.taskAdd {
+  font-size: 26px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 5px;
+  padding: 10px 20px;
+  transition: all 0.5s;
+}
+
+.taskAdd:hover {
+  background-color: #b5e61b;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.error {
+  background-color: indianred;
+}
+
 .errorText {
-	color: red;
+  color: red;
 }

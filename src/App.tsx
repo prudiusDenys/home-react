@@ -29,7 +29,7 @@ export type TodoListType = {
 	filterTask: FilterTaskType
 }
 export type TaskStateType = {
-[key:string]: Array<TasksType>
+	[key: string]: Array<TasksType>
 }
 
 
@@ -83,6 +83,15 @@ function App() {
 		tasks[todoListId] = tasks[todoListId].filter(t => t.id !== idValue)
 		setTasks({...tasks})
 	}
+
+	let changeTodoListTitle = (todoListId: string, titleValue: string) => {
+		let todoList = todoLists.find(td => td.id === todoListId)
+		if (todoList) {
+			todoList.title = titleValue
+			setTodoLists([...todoLists])
+		}
+	}
+
 	let changeStatus = (idValue: string, isDone: boolean, todoListId: string) => {
 		let todoList = tasks[todoListId]
 		let task = todoList.find(t => t.id === idValue)
@@ -91,6 +100,16 @@ function App() {
 			setTasks({...tasks})
 		}
 	}
+
+	let changeItemTask = (idValue: string, TaskValue: string, todoListId: string) => {
+		let todoList = tasks[todoListId]
+		let task = todoList.find(t => t.id === idValue)
+		if (task) {
+			task.item = TaskValue
+			setTasks({...tasks})
+		}
+	}
+
 	let removeTodoList = (todoListId: string) => {
 		let filterTodoLists = todoLists.filter(tl => tl.id !== todoListId)
 		setTodoLists(filterTodoLists)
@@ -99,7 +118,7 @@ function App() {
 	}
 
 	const addTodoList = (title: string) => {
-		let todoList: TodoListType = {id:v1(), title: title, filterTask:'all'}
+		let todoList: TodoListType = {id: v1(), title: title, filterTask: 'all'}
 		setTodoLists([todoList, ...todoLists])
 		setTasks({...tasks, [todoList.id]: []})
 	}
@@ -154,12 +173,15 @@ function App() {
 																																correctField={correctField}
 																																namesData={namesData}
 																																tasks={tasks}
-																																todoLists = {todoLists}
+																																todoLists={todoLists}
 																																removeTodoList={removeTodoList}
 																																addNewTask={addNewTask}
 																																changeStatus={changeStatus}
 																																changeTasks={changeTasks}
-																																deleteTask={deleteTask} addTodoList={addTodoList}/>
+																																deleteTask={deleteTask}
+																																addTodoList={addTodoList}
+																																changeItemTask={changeItemTask}
+																																changeTodoListTitle={changeTodoListTitle}/>
 						}/>
 						<Route path={'/junior'} render={() => <Junior/>}/>
 						<Route path={'/juniorPlus'} render={() => <JuniorPlus/>}/>

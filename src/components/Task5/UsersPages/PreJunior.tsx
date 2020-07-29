@@ -28,7 +28,10 @@ type PropsType = {
 	deleteTask: (idValue: string, todoListId: string) => void;
 	changeStatus: (idValue: string, isDone: boolean, todoListId: string) => void
 	removeTodoList: (todoListId: string) => void
-	addTodoList: (title: string)=>void
+	addTodoList: (title: string) => void
+	changeItemTask: (idValue: string, TaskValue: string, todoListId: string) => void
+	changeTodoListTitle: (todoListId: string, titleValue: string) => void
+
 }
 
 export const PreJunior = (props: PropsType) => {
@@ -65,12 +68,12 @@ export const PreJunior = (props: PropsType) => {
 							deleteTask={props.deleteTask}
 							changeStatus={props.changeStatus}
 							filterTask={tl.filterTask}
-							removeTodoList={props.removeTodoList}/>
+							removeTodoList={props.removeTodoList}
+							changeItemTask={props.changeItemTask} changeTodoListTitle={props.changeTodoListTitle}/>
 			</div>
 
 		)
 	})
-
 
 
 	return (

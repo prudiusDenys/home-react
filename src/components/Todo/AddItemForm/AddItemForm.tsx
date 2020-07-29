@@ -31,14 +31,14 @@ export const AddItemForm = (props: PropsType) => {
 	};
 
 	return(
-		<div className={classes.inputWrapper}>
-			<div className={classes.input}>
-				<h3>Add New TodoList</h3>
-				<input className={error ? classes.error : ''} placeholder={error ? error : ''} type="text"
+		<div className={classes.itemForm}>
+			<h3>Add new TodoList</h3>
+			<div className={classes.wrapper}>
+				<input className={error ? classes.error : classes.inputValue} placeholder={error ? error : ''} type="text"
 							 value={value}
 							 onChange={onChangeHandler}
 							 onKeyPress={onKeyPressHandler}/>
-				<button onClick={addTaskHandler} className={classes.TaskAdd}>+</button>
+				<button onClick={addTaskHandler} className={classes.taskAdd}>Add</button>
 			</div>
 		</div>
 	)

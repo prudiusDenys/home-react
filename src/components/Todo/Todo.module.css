@@ -1,18 +1,21 @@
-.todo{
+.todo {
   position: relative;
   border: 2px solid black;
   border-radius: 5px;
   padding: 0 30px 30px 30px;
   width: 300px;
-  margin: 100px 0;
+  margin-bottom: 100px;
 }
-h2{
+
+h2 {
   text-align: center;
 }
-.listItem{
+
+.listItem {
   margin-bottom: 30px;
 }
-.item{
+
+.item {
   width: 100%;
   list-style-type: disc;
   margin-bottom: 10px;
@@ -23,28 +26,30 @@ h2{
   justify-content: space-between;
 }
 
-.item input{
+.item input {
   margin-right: 10px;
 }
 
-.item button{
-background: none;
+.item button {
+  background: none;
   border: none;
   font-size: 16px;
   cursor: pointer;
   outline: none;
 }
-.item button:hover{
+
+.item button:hover {
   background: red;
   color: white;
   transition: all 0.3s;
   border-radius: 5px;
 }
 
-.btns{
+.btns {
   width: 100%;
 }
-.btns button{
+
+.btns button {
   display: block;
   width: 100%;
   margin-bottom: 10px;
@@ -54,13 +59,14 @@ background: none;
   border: none;
   outline: none;
 }
-.btns button:hover{
+
+.btns button:hover {
   background-color: #b5e61b;
   color: #fff;
   transition: all 0.3s;
 }
 
-.active{
+.active {
   background-color: #b5e61b;
   color: #fff;
   transition: all 0.3s;
@@ -69,29 +75,33 @@ background: none;
 .completedTask {
   opacity: 0.5;
 }
-.error{
+
+.error {
   background-color: indianred;
 }
+
 .errorText {
-color: red;
+  color: red;
 }
-.inputWrapper{
+
+.inputWrapper {
   position: absolute;
   top: 30%;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
 }
-.input{
+
+.input {
   position: relative;
   border: 2px solid black;
 }
 
-input::placeholder{
+input::placeholder {
   font-size: 15px;
 }
 
-.input input{
+.input input {
   width: 100%;
   padding: 10px 50px 10px 10px;
   font-size: 18px;
@@ -99,7 +109,8 @@ input::placeholder{
   outline: none;
   border: none;
 }
-.input button{
+
+.input button {
   position: absolute;
   bottom: 24px;
   right: 0;
@@ -110,6 +121,7 @@ input::placeholder{
   outline: none;
   cursor: pointer;
 }
+
 .input h3 {
   background-color: #b5e61b;
   color: #fff;
@@ -118,11 +130,12 @@ input::placeholder{
   padding: 0 10px;
   height: 50%;
 }
-.input .close{
+
+.input .close {
   cursor: pointer;
 }
 
-.deleteTitle{
+.deleteTitle {
   display: block;
   margin: 0 auto;
   margin-top: 15px;
