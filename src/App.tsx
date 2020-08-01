@@ -6,6 +6,7 @@ import {PreJunior} from "./components/Task5/UsersPages/PreJunior";
 import {Junior} from "./components/Task5/UsersPages/Junior";
 import {JuniorPlus} from "./components/Task5/UsersPages/JuniorPlus";
 import {Home} from "./components/Task5/UsersPages/Home";
+import {PresCompForEditableSpan} from "./components/Task6/PresCompForEditableSpan";
 
 export type dialogsDataType = {
 	id: number,

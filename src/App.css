@@ -44,9 +44,12 @@ li {
   padding: 0 10px;
 }
 .inputWrapper{
+  width: 400px;
   display: flex;
+  justify-content: space-around;
   margin-bottom: 20px;
 }
+
 .todoListWrapper{
   display: flex;
   justify-content: space-evenly;

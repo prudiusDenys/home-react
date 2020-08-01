@@ -14,7 +14,7 @@ type PropsType = {
 	dialogsData: Array<dialogsDataType>
 	valueInp: string
 	setValueInp: (value: string) => void
-	correctField?: boolean
+	correctField: boolean
 	setCorrectField: (correctField: boolean) => void
 	onChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void
 	onKeyPressHandler: (e: KeyboardEvent<HTMLInputElement>) => void
@@ -89,9 +89,7 @@ export const PreJunior = (props: PropsType) => {
 			</div>
 			<div className={'inputWrapper'}>
 				<Input valueInp={props.valueInp}
-							 setValueInp={props.setValueInp}
 							 correctField={props.correctField}
-							 setCorrectField={props.setCorrectField}
 							 onChangeHandler={props.onChangeHandler}
 							 onKeyPressHandler={props.onKeyPressHandler}
 							 placeholderDefault={'Write your name'}/>
@@ -99,7 +97,6 @@ export const PreJunior = (props: PropsType) => {
 								title={'SAY HELLO'}
 								typeOfButton={'red'}/>
 			</div>
-
 			<NamesNumber namesData={props.namesData}/>
 			<PresentationComponent/>
 		</div>

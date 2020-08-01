@@ -1,4 +1,4 @@
-import React, {useState, KeyboardEvent, ChangeEvent} from "react";
+import React, {useState, KeyboardEvent, ChangeEvent,FocusEvent} from "react";
 import classes from "./PresentationComponent.module.css";
 import {Input} from "../../common/Input/Input";
 import {Button} from "../../common/Button/Button";
@@ -11,6 +11,7 @@ export const PresentationComponent = () => {
 	let [valueInp, setValueInp] = useState('')
 	let [correctField, setCorrectField] = useState(true)
 	let [checkbox, setCheckbox] = useState(false)
+	let [blurFocus, setBlurFocus] = useState(false)
 
 	let onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		setValueInp(e.currentTarget.value)
@@ -31,6 +32,9 @@ export const PresentationComponent = () => {
 	let onClickCheckbox = () => {
 		setCheckbox(!checkbox)
 	}
+	let onBlurHandler = () => {
+		setBlurFocus(false)
+	}
 
 	return (
 		<div>
@@ -41,11 +45,10 @@ export const PresentationComponent = () => {
 				<Checkbox checkbox={checkbox}
 									onClickCheckbox={onClickCheckbox}/>
 				<Input valueInp={valueInp}
-							 setValueInp={setValueInp}
 							 correctField={correctField}
-							 setCorrectField={setCorrectField}
 							 onChangeHandler={onChangeHandler}
 							 onKeyPressHandler={onKeyPressHandler}
+							 onBlurHandler={onBlurHandler}
 							 placeholderDefault={''}/>
 				<Button onClickBtnHandler={onClickBtnHandler}
 								title={'SEND'}/>

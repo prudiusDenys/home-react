@@ -1,0 +1,10 @@
+.wrapper{
+  margin: 0 0 100px 100px;
+}
+.btnHandler{
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+
+
+}

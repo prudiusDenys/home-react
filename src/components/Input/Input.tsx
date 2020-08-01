@@ -47,7 +47,7 @@ export const Input = (props: PropsType) => {
 							 value={props.value}
 							 placeholder={'Write your name'}
 							 type="text"/>
-				<button onClick={onClickBtnHandler}>Say Hello</button>
+				<button className={classes.btn} onClick={onClickBtnHandler}>Say Hello</button>
 			</div>
 			{props.warningValue && <div className={classes.error}>Please write your name!</div>}
 		</div>
