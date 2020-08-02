@@ -1,4 +1,4 @@
-import React, {useState, FocusEvent, ChangeEvent, KeyboardEvent} from "react";
+import React, {ChangeEvent, KeyboardEvent} from "react";
 import classes from "./EditableSpan.module.css";
 import {Input} from "../Input/Input";
 
@@ -24,7 +24,8 @@ export const EditableSpan = (props: PropsType) => {
 								 onBlurHandler={props.onBlurHandler}
 								 autoFocus={true}
 								 correctField={props.correctField}
-								 placeholderDefault={'Write your status'} onKeyPressHandler={props.onKeyPressHandler}/> :
+								 placeholderDefault={'Write your status'}
+								 onKeyPressHandler={props.onKeyPressHandler}/> :
 					<span className={classes.span}
 								onClick={props.onClickHandler}>{props.valueInp !== '' ? props.valueInp : "You don't have any status"}</span>
 			}
