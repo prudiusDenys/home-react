@@ -1,4 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import {TextField} from "@material-ui/core";
 
 type PropsType = {
 	itemValue: string
@@ -41,9 +42,14 @@ export const EditableSpan = (props: PropsType) => {
 	}
 
 	return (
-		editMode ? <input style={correctValue ? undefined : error} type="text" value={inputValue} onChange={onChangeHandler}
-											onBlur={onBlurHandler} onKeyPress={onKeyPressHandler} autoFocus
-											placeholder={correctValue ? '' : "Task name is missing"}/>
+		editMode ? <TextField error={!correctValue}
+													value={inputValue}
+													onChange={onChangeHandler}
+													onBlur={onBlurHandler}
+													onKeyPress={onKeyPressHandler}
+													autoFocus
+													helperText={correctValue ? '' : 'Task name is missing'}
+													label={'edit task'}/>
 			: <span onDoubleClick={onDoubleClickHandler}>{props.itemValue}</span>
 	)
 }

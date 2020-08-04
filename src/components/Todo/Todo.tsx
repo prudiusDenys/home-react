@@ -1,8 +1,11 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import classes from "./Todo.module.css";
 import {FilterTaskType, TasksType} from "../../App";
 import {AddTaskInput} from "./AddTaskInput/AddTaskInput";
 import {EditableSpan} from "./EditableSpan/EditableSpan";
+import {Button, Checkbox} from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
+import {Delete} from "@material-ui/icons";
 
 type PropsType = {
 	id: string
@@ -36,9 +39,11 @@ const Todo = (props: PropsType) => {
 
 			return (
 				<li key={t.id} className={t.isDone ? `${classes.item} ${classes.completedTask}` : classes.item}>
-					<input onChange={onChangeStatusHandler} checked={t.isDone} type="checkbox"/>
+					<Checkbox  onChange={onChangeStatusHandler} checked={t.isDone} color={"primary"}/>
 					<EditableSpan itemValue={t.item} getNewInputValue={getNewInputValue}/>
-					<button onClick={onClickDeleteHandler}>x</button>
+					<IconButton onClick={onClickDeleteHandler} aria-label="delete">
+						<Delete />
+					</IconButton>
 				</li>
 			)
 		}
@@ -64,27 +69,26 @@ const Todo = (props: PropsType) => {
 		<div className={classes.todo}>
 			<h2>
 				<EditableSpan itemValue={props.title} getNewInputValue={getNewTitleValue}/>
-				<button className={classes.deleteTitle} onClick={removeTodoListHandler}>Delete ToDoList</button>
+				<IconButton onClick={removeTodoListHandler} aria-label="delete">
+					<Delete />
+				</IconButton>
 			</h2>
 			<ul className={classes.listItem}>
 				{elementItem}
 			</ul>
 			<div className={classes.btns}>
-				<button className={props.filterTask === 'all' ? classes.active : ''} onClick={showAllTasks}>All tasks</button>
-				<button className={props.filterTask === 'active' ? classes.active : ''} onClick={showActiveTasks}>Active Tasks
-				</button>
-				<button className={props.filterTask === 'completed' ? classes.active : ''}
-								onClick={showCompletedTasks}>Completed Tasks
-				</button>
-				<button className={props.filterTask === 'height' ? classes.active : ''}
-								onClick={showImportanceTasks}>Important
-				</button>
-				<button className={props.filterTask === 'medium' ? classes.active : ''} onClick={showMediumTasks}>Medium
-					importance
-				</button>
-				<button className={props.filterTask === 'low' ? classes.active : ''} onClick={showLowTasks}>Low important
-				</button>
-				<button className={active ? classes.active : ''} onClick={showAddBlock}>Add Task</button>
+				<div className={classes.btnsBases}>
+					<Button variant={props.filterTask === 'all' ? 'contained' : 'text'} color={"primary"} onClick={showAllTasks}>All</Button>
+					<Button variant={props.filterTask === 'active' ? 'contained' : 'text'} color={'primary'} onClick={showActiveTasks}>Active</Button>
+					<Button variant={props.filterTask === 'completed' ? 'contained' : 'text'} color={"primary"} onClick={showCompletedTasks}>Completed</Button>
+				</div>
+					<div className={classes.btnsImportance}>
+						<Button variant={props.filterTask === 'height' ? 'contained' : 'text'} color={"primary"} onClick={showImportanceTasks}>Important</Button>
+						<Button variant={props.filterTask === 'medium' ? 'contained' : 'text'} color={"primary"} onClick={showMediumTasks}>Medium</Button>
+						<Button variant={props.filterTask === 'low' ? 'contained' : 'text'} color={"primary"} onClick={showLowTasks}>Low</Button>
+					</div>
+
+				<Button style={{width: '100%'}}  className={active ? classes.active : ''} color={"secondary"} onClick={showAddBlock}>Add Task</Button>
 			</div>
 			<AddTaskInput addNewTask={addNewTask}
 										active={active}

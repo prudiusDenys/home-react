@@ -1,8 +1,11 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import classes from "./AddItemForm.module.css";
+import {Paper, TextField} from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
+import {PlaylistAdd} from "@material-ui/icons";
 
 type PropsType = {
-	addItem: (title: string)=>void
+	addItem: (title: string) => void
 }
 
 export const AddItemForm = (props: PropsType) => {
@@ -30,16 +33,21 @@ export const AddItemForm = (props: PropsType) => {
 		}
 	};
 
-	return(
+	return (
+		<Paper>
 		<div className={classes.itemForm}>
-			<h3>Add new TodoList</h3>
 			<div className={classes.wrapper}>
-				<input className={error ? classes.error : classes.inputValue} placeholder={error ? error : ''} type="text"
-							 value={value}
-							 onChange={onChangeHandler}
-							 onKeyPress={onKeyPressHandler}/>
-				<button onClick={addTaskHandler} className={classes.taskAdd}>Add</button>
+				<TextField error={!!error}
+									 value={value}
+									 onChange={onChangeHandler}
+									 onKeyPress={onKeyPressHandler}
+									 label={'Add new TodoList'}
+									 helperText={!!error ? "Incorrect entry." : ''}/>
+				<IconButton onClick={addTaskHandler} color={"primary"}>
+					<PlaylistAdd/>
+				</IconButton>
 			</div>
 		</div>
+		</Paper>
 	)
 }

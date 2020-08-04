@@ -9,6 +9,7 @@ import {NamesNumber} from "../../NamesNumber/NamesNumber";
 import {PresentationComponent} from "../../PresentationComponent/PresentationComponent";
 import Todo from "../../Todo/Todo";
 import {AddItemForm} from "../../Todo/AddItemForm/AddItemForm";
+import {Grid, Paper} from "@material-ui/core";
 
 type PropsType = {
 	dialogsData: Array<dialogsDataType>
@@ -58,19 +59,21 @@ export const PreJunior = (props: PropsType) => {
 		}
 
 		return (
-			<div>
-				<Todo key={tl.id}
-							id={tl.id}
-							title={tl.title}
-							tasks={newFilteredTasks}
-							changeTasks={props.changeTasks}
-							addNewTask={props.addNewTask}
-							deleteTask={props.deleteTask}
-							changeStatus={props.changeStatus}
-							filterTask={tl.filterTask}
-							removeTodoList={props.removeTodoList}
-							changeItemTask={props.changeItemTask} changeTodoListTitle={props.changeTodoListTitle}/>
-			</div>
+			<Grid item>
+				<Paper>
+						<Todo key={tl.id}
+									id={tl.id}
+									title={tl.title}
+									tasks={newFilteredTasks}
+									changeTasks={props.changeTasks}
+									addNewTask={props.addNewTask}
+									deleteTask={props.deleteTask}
+									changeStatus={props.changeStatus}
+									filterTask={tl.filterTask}
+									removeTodoList={props.removeTodoList}
+									changeItemTask={props.changeItemTask} changeTodoListTitle={props.changeTodoListTitle}/>
+				</Paper>
+			</Grid>
 
 		)
 	})
@@ -82,10 +85,14 @@ export const PreJunior = (props: PropsType) => {
 			<Dialogs dialogsData={props.dialogsData}/>
 
 			<div className={'todoListWrapper'}>
-				<div className={classes.addNewTodoList}>
-					<AddItemForm addItem={props.addTodoList}/>
-				</div>
-				{todoList}
+				<Grid container>
+					<div className={classes.addNewTodoList}>
+						<AddItemForm addItem={props.addTodoList}/>
+					</div>
+				</Grid>
+				<Grid container spacing={3}>
+					{todoList}
+				</Grid>
 			</div>
 			<div className={'inputWrapper'}>
 				<Input valueInp={props.valueInp}
