@@ -2,10 +2,17 @@ import React, {useState} from "react";
 import {NavBar} from "../NavBar";
 import {PresCompForEditableSpan} from "../../Task6/PresCompForEditableSpan";
 import {Select} from "../../../common/Select/Select";
+import {Radio} from "../../../common/Radio/Radio";
 
 export type CountriesType = {
 	value: string
 	country: string
+}
+export type ContactMethodType = {
+	id: number
+	name: string
+	value: string
+	checked: boolean
 }
 
 export const Junior = () => {
@@ -23,11 +30,38 @@ export const Junior = () => {
 		setValue(selectValue);
 	}
 
+/////////////////// RADIO ///////////////////////////////
+
+	const [contactMethods, setContactMethods] = useState<Array<ContactMethodType>>([
+		{id: 1, name: 'contact', value: 'Phone', checked: false},
+		{id: 2, name: 'contact', value: 'Mobile phone', checked: false},
+		{id: 3, name: 'contact', value: 'Email', checked: true},
+		{id: 4, name: 'contact', value: 'Fax', checked: false},
+	])
+
+	const onChangeRadio = (id: number, checked: boolean) => {
+		const copyContactMethods = contactMethods.map(r => {
+			if (r.checked) {
+				return {
+					...r,
+					checked: false
+				}
+			}
+			return r;
+		})
+		const contactMethod = copyContactMethods.find(r => r.id === id)
+		if (contactMethod) {
+			contactMethod.checked = checked
+			setContactMethods([...copyContactMethods])
+		}
+	}
+
 	return (
 		<div>
 			<NavBar/>
 			<PresCompForEditableSpan/>
 			<Select value={value} items={countries} onChange={onChange}/>
+			<Radio items={contactMethods} onChangeRadio={onChangeRadio}/>
 		</div>
 	)
 }
