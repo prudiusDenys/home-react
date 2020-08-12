@@ -6,7 +6,6 @@ import {PreJunior} from "./components/Task5/UsersPages/PreJunior";
 import {Junior} from "./components/Task5/UsersPages/Junior";
 import {JuniorPlus} from "./components/Task5/UsersPages/JuniorPlus";
 import {Home} from "./components/Task5/UsersPages/Home";
-import {PresCompForEditableSpan} from "./components/Task6/PresCompForEditableSpan";
 
 export type dialogsDataType = {
 	id: number,
@@ -71,28 +70,11 @@ function App() {
 	let addNewTask = (newTaskValue: string, todoListId: string) => {
 		tasks[todoListId] = [{id: v1(), item: newTaskValue, isDone: false, importance: 'height'}, ...tasks[todoListId]]
 		setTasks({...tasks});
-
 	}
-	let changeTasks = (valueNewFilter: FilterTaskType, todoListId: string) => {
-		let todoList = todoLists.find(tl => tl.id === todoListId);
-		if (todoList) {
-			todoList.filterTask = valueNewFilter;
-			setTodoLists([...todoLists])
-		}
-	};
 	let deleteTask = (idValue: string, todoListId: string) => {
 		tasks[todoListId] = tasks[todoListId].filter(t => t.id !== idValue)
 		setTasks({...tasks})
 	}
-
-	let changeTodoListTitle = (todoListId: string, titleValue: string) => {
-		let todoList = todoLists.find(td => td.id === todoListId)
-		if (todoList) {
-			todoList.title = titleValue
-			setTodoLists([...todoLists])
-		}
-	}
-
 	let changeStatus = (idValue: string, isDone: boolean, todoListId: string) => {
 		let todoList = tasks[todoListId]
 		let task = todoList.find(t => t.id === idValue)
@@ -101,7 +83,6 @@ function App() {
 			setTasks({...tasks})
 		}
 	}
-
 	let changeItemTask = (idValue: string, TaskValue: string, todoListId: string) => {
 		let todoList = tasks[todoListId]
 		let task = todoList.find(t => t.id === idValue)
@@ -111,18 +92,31 @@ function App() {
 		}
 	}
 
+	let addTodoList = (title: string) => {
+		let todoList: TodoListType = {id: v1(), title: title, filterTask: 'all'}
+		setTodoLists([todoList, ...todoLists])
+		setTasks({...tasks, [todoList.id]: []})
+	}
 	let removeTodoList = (todoListId: string) => {
 		let filterTodoLists = todoLists.filter(tl => tl.id !== todoListId)
 		setTodoLists(filterTodoLists)
 		delete tasks[todoListId]
 		setTasks({...tasks})
 	}
-
-	const addTodoList = (title: string) => {
-		let todoList: TodoListType = {id: v1(), title: title, filterTask: 'all'}
-		setTodoLists([todoList, ...todoLists])
-		setTasks({...tasks, [todoList.id]: []})
+	let changeTodoListTitle = (todoListId: string, titleValue: string) => {
+		let todoList = todoLists.find(td => td.id === todoListId)
+		if (todoList) {
+			todoList.title = titleValue
+			setTodoLists([...todoLists])
+		}
 	}
+	let changeTasks = (valueNewFilter: FilterTaskType, todoListId: string) => {
+		let todoList = todoLists.find(tl => tl.id === todoListId);
+		if (todoList) {
+			todoList.filterTask = valueNewFilter;
+			setTodoLists([...todoLists])
+		}
+	};
 
 	// =============================== HOME WORK NUMBER 3 and 4 ====================================
 	const type = 'text'
