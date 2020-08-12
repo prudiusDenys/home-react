@@ -4,9 +4,14 @@
   margin: 0 0 100px 100px;
 }
 
+.inputWrapper{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 .radioWrapper input {
   appearance: none;
-  margin-bottom: 5px;
   border-radius: 50%;
   width: 16px;
   height: 16px;

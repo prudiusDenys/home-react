@@ -9,7 +9,7 @@ export type CountriesType = {
 	country: string
 }
 export type ContactMethodType = {
-	id: number
+	id: string
 	name: string
 	value: string
 	checked: boolean
@@ -33,13 +33,13 @@ export const Junior = () => {
 /////////////////// RADIO ///////////////////////////////
 
 	const [contactMethods, setContactMethods] = useState<Array<ContactMethodType>>([
-		{id: 1, name: 'contact', value: 'Phone', checked: false},
-		{id: 2, name: 'contact', value: 'Mobile phone', checked: false},
-		{id: 3, name: 'contact', value: 'Email', checked: true},
-		{id: 4, name: 'contact', value: 'Fax', checked: false},
+		{id: '1', name: 'contact', value: 'Phone', checked: false},
+		{id: '2', name: 'contact', value: 'Mobile phone', checked: false},
+		{id: '3', name: 'contact', value: 'Email', checked: true},
+		{id: '4', name: 'contact', value: 'Fax', checked: false},
 	])
 
-	const onChangeRadio = (id: number, checked: boolean) => {
+	const onChangeRadio = (id: string, checked: boolean) => {
 		const copyContactMethods = contactMethods.map(r => {
 			if (r.checked) {
 				return {
@@ -49,6 +49,7 @@ export const Junior = () => {
 			}
 			return r;
 		})
+
 		const contactMethod = copyContactMethods.find(r => r.id === id)
 		if (contactMethod) {
 			contactMethod.checked = checked
