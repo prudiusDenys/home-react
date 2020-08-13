@@ -8,7 +8,7 @@ type PropsType = {
 	onChange: (selectValue: string) => void
 }
 
-export const Select = (props: PropsType) => {
+export const Select = React.memo(function (props: PropsType){
 
 	const [collapsed, setCollapsed] = useState(true);
 	const [hoveredElement, setHoveredElement] = useState(props.value);
@@ -78,4 +78,4 @@ export const Select = (props: PropsType) => {
 			}
 		</div>
 	)
-}
+})

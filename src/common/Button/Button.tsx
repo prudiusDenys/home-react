@@ -7,11 +7,12 @@ type PropsType = {
 	typeOfButton?: 'red'
 }
 
-export const Button = (props: PropsType) => {
+export const Button = React.memo(function (props: PropsType){
+	console.log('button')
 	return (
 		<div className={classes.wrapper}>
 			<button className={props.typeOfButton === 'red' ? `${classes.btn} ${classes.cngBtn}` : classes.btn}
 							onClick={props.onClickBtnHandler}>{props.title}</button>
 		</div>
 	)
-}
+})

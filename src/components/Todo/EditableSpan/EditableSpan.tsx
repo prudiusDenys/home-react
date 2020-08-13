@@ -6,7 +6,7 @@ type PropsType = {
 	getNewInputValue: (inputValue: string) => void
 }
 
-export const EditableSpan = (props: PropsType) => {
+export const EditableSpan = React.memo(function (props: PropsType){
 
 	const [editMode, setEditMode] = useState(false);
 	const [inputValue, setInputValue] = useState('');
@@ -52,4 +52,4 @@ export const EditableSpan = (props: PropsType) => {
 													label={'edit task'}/>
 			: <span onDoubleClick={onDoubleClickHandler}>{props.itemValue}</span>
 	)
-}
+})

@@ -7,12 +7,13 @@ type propsType = {
 	dialogsData: Array<dialogsDataType>,
 }
 
-const Dialogs = (props: propsType) => {
+const Dialogs = React.memo(function (props: propsType){
+	console.log('dialogs')
 	return (
 		<div className={classes.dialogs}>
 			<Message name = {props.dialogsData[0].name}  text = {props.dialogsData[0].text}/>
 		</div>
 	)
-}
+})
 
 export default Dialogs;

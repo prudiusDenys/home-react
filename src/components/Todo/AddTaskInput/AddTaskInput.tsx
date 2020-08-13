@@ -7,7 +7,7 @@ type PropsType = {
 	setActive: (boolean: boolean)=>void
 }
 
-export const AddTaskInput = (props: PropsType) => {
+export const AddTaskInput = React.memo(function (props: PropsType){
 	let [value, setValue] = useState('')
 	let [error, setError] = useState<string | null>(null);
 	const showDisplay = {display: props.active ? 'block' : 'none'};
@@ -44,9 +44,9 @@ export const AddTaskInput = (props: PropsType) => {
 			<div className={classes.input} style={showDisplay}>
 				<h3>Add New Task</h3>
 				<input  className={error ? classes.error : ''} placeholder={error ? error : ''} type="text"
-							 value={value}
-							 onChange={onChangeHandler}
-							 onKeyPress={onKeyPressHandler}/>
+								value={value}
+								onChange={onChangeHandler}
+								onKeyPress={onKeyPressHandler}/>
 
 				<button onClick={addTaskHandler} className={classes.TaskAdd}>+</button>
 
@@ -54,4 +54,4 @@ export const AddTaskInput = (props: PropsType) => {
 			</div>
 		</div>
 	)
-}
+})

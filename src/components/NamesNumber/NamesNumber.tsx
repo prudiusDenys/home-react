@@ -6,13 +6,14 @@ type PropsType = {
 	namesData: Array<NamesData>
 }
 
-export const NamesNumber = (props: PropsType) => {
+export const NamesNumber = React.memo(function (props: PropsType){
+	console.log('names number')
 	return(
 		<div className={classes.names}>
 			Number of names = {props.namesData.length}
 		</div>
 	)
-}
+})
 
 
 

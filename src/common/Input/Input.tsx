@@ -11,7 +11,8 @@ type PropsType = {
 	autoFocus?:boolean
 }
 
-export const Input = (props: PropsType) => {
+export const Input = React.memo(function (props: PropsType){
+	console.log('input')
 	return (
 		<div className={classes.wrapper}>
 			<input className={props.correctField ? classes.input : `${classes.input} ${classes.error}`}
@@ -24,4 +25,4 @@ export const Input = (props: PropsType) => {
 						 type='text'/>
 		</div>
 	)
-}
+})

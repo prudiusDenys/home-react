@@ -21,7 +21,9 @@ type PropsType = {
 	changeTodoListTitle: (todoListId: string, titleValue: string,) => void
 }
 
-const Todo = (props: PropsType) => {
+
+const Todo = React.memo(function (props: PropsType){
+	console.log('TODO')
 
 	const [active, setActive] = useState(false);
 	const showAddBlock = () => setActive(!active);
@@ -82,11 +84,11 @@ const Todo = (props: PropsType) => {
 					<Button variant={props.filterTask === 'active' ? 'contained' : 'text'} color={'primary'} onClick={showActiveTasks}>Active</Button>
 					<Button variant={props.filterTask === 'completed' ? 'contained' : 'text'} color={"primary"} onClick={showCompletedTasks}>Completed</Button>
 				</div>
-					<div className={classes.btnsImportance}>
-						<Button variant={props.filterTask === 'height' ? 'contained' : 'text'} color={"primary"} onClick={showImportanceTasks}>Important</Button>
-						<Button variant={props.filterTask === 'medium' ? 'contained' : 'text'} color={"primary"} onClick={showMediumTasks}>Medium</Button>
-						<Button variant={props.filterTask === 'low' ? 'contained' : 'text'} color={"primary"} onClick={showLowTasks}>Low</Button>
-					</div>
+				<div className={classes.btnsImportance}>
+					<Button variant={props.filterTask === 'height' ? 'contained' : 'text'} color={"primary"} onClick={showImportanceTasks}>Important</Button>
+					<Button variant={props.filterTask === 'medium' ? 'contained' : 'text'} color={"primary"} onClick={showMediumTasks}>Medium</Button>
+					<Button variant={props.filterTask === 'low' ? 'contained' : 'text'} color={"primary"} onClick={showLowTasks}>Low</Button>
+				</div>
 
 				<Button style={{width: '100%'}}  className={active ? classes.active : ''} color={"secondary"} onClick={showAddBlock}>Add Task</Button>
 			</div>
@@ -95,6 +97,6 @@ const Todo = (props: PropsType) => {
 										setActive={setActive}/>
 		</div>
 	)
-}
+})
 
 export default Todo;

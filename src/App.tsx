@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useCallback, useState} from 'react';
 import './App.css';
 import {v1} from "uuid";
 import {HashRouter, Route} from "react-router-dom";
@@ -67,56 +67,56 @@ function App() {
 		]
 	})
 
-	let addNewTask = (newTaskValue: string, todoListId: string) => {
+	let addNewTask = useCallback((newTaskValue: string, todoListId: string) => {
 		tasks[todoListId] = [{id: v1(), item: newTaskValue, isDone: false, importance: 'height'}, ...tasks[todoListId]]
 		setTasks({...tasks});
-	}
-	let deleteTask = (idValue: string, todoListId: string) => {
+	}, [tasks])
+	let deleteTask = useCallback((idValue: string, todoListId: string) => {
 		tasks[todoListId] = tasks[todoListId].filter(t => t.id !== idValue)
 		setTasks({...tasks})
-	}
-	let changeStatus = (idValue: string, isDone: boolean, todoListId: string) => {
+	}, [tasks])
+	let changeStatus = useCallback((idValue: string, isDone: boolean, todoListId: string) => {
 		let todoList = tasks[todoListId]
 		let task = todoList.find(t => t.id === idValue)
 		if (task) {
 			task.isDone = isDone;
 			setTasks({...tasks})
 		}
-	}
-	let changeItemTask = (idValue: string, TaskValue: string, todoListId: string) => {
+	}, [tasks])
+	let changeItemTask = useCallback((idValue: string, TaskValue: string, todoListId: string) => {
 		let todoList = tasks[todoListId]
 		let task = todoList.find(t => t.id === idValue)
 		if (task) {
 			task.item = TaskValue
 			setTasks({...tasks})
 		}
-	}
+	}, [tasks])
 
-	let addTodoList = (title: string) => {
+	let addTodoList = useCallback((title: string) => {
 		let todoList: TodoListType = {id: v1(), title: title, filterTask: 'all'}
 		setTodoLists([todoList, ...todoLists])
 		setTasks({...tasks, [todoList.id]: []})
-	}
-	let removeTodoList = (todoListId: string) => {
+	}, [todoLists])
+	let removeTodoList = useCallback((todoListId: string) => {
 		let filterTodoLists = todoLists.filter(tl => tl.id !== todoListId)
 		setTodoLists(filterTodoLists)
 		delete tasks[todoListId]
 		setTasks({...tasks})
-	}
-	let changeTodoListTitle = (todoListId: string, titleValue: string) => {
+	}, [todoLists])
+	let changeTodoListTitle = useCallback((todoListId: string, titleValue: string) => {
 		let todoList = todoLists.find(td => td.id === todoListId)
 		if (todoList) {
 			todoList.title = titleValue
 			setTodoLists([...todoLists])
 		}
-	}
-	let changeTasks = (valueNewFilter: FilterTaskType, todoListId: string) => {
+	}, [todoLists])
+	let changeTasks = useCallback((valueNewFilter: FilterTaskType, todoListId: string) => {
 		let todoList = todoLists.find(tl => tl.id === todoListId);
 		if (todoList) {
 			todoList.filterTask = valueNewFilter;
 			setTodoLists([...todoLists])
 		}
-	};
+	}, [todoLists]);
 
 	// =============================== HOME WORK NUMBER 3 and 4 ====================================
 	const type = 'text'
@@ -124,16 +124,16 @@ function App() {
 	let [correctField, setCorrectField] = useState(true)
 	let [namesData, setNamesData] = useState<Array<{ id: string, name: string }>>([])
 
-	let showMessage = (value: string) => {
+	let showMessage = useCallback((value: string) => {
 		alert(`Hello ${value}`);
 		let newName = [...namesData, {id: v1(), name: value}]
 		setNamesData(newName)
-	};
-	let onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+	},[])
+	let onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
 		setValueInp(e.currentTarget.value)
 		setCorrectField(true)
-	}
-	let onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+	},[])
+	let onKeyPressHandler = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
 		if (e.charCode === 13 && e.currentTarget.value.trim() !== '') {
 			showMessage(e.currentTarget.value.trim())
 			setValueInp('')
@@ -141,8 +141,8 @@ function App() {
 			setCorrectField(false)
 			setValueInp('')
 		}
-	}
-	let onClickBtnHandler = () => {
+	},[])
+	let onClickBtnHandler = useCallback(() => {
 		if (valueInp.trim() !== '') {
 			showMessage(valueInp.trim())
 			setValueInp('')
@@ -150,7 +150,7 @@ function App() {
 			setCorrectField(false)
 			setValueInp('')
 		}
-	}
+	},[])
 
 	return (
 		<HashRouter>

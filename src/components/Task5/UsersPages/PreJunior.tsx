@@ -32,10 +32,9 @@ type PropsType = {
 	addTodoList: (title: string) => void
 	changeItemTask: (idValue: string, TaskValue: string, todoListId: string) => void
 	changeTodoListTitle: (todoListId: string, titleValue: string) => void
-
 }
 
-export const PreJunior = (props: PropsType) => {
+export const PreJunior = React.memo(function PreJunior(props: PropsType) {
 
 	let todoList = props.todoLists.map(tl => {
 
@@ -59,19 +58,18 @@ export const PreJunior = (props: PropsType) => {
 		}
 
 		return (
-			<Grid item>
+			<Grid item key={tl.id}>
 				<Paper>
-						<Todo key={tl.id}
-									id={tl.id}
-									title={tl.title}
-									tasks={newFilteredTasks}
-									changeTasks={props.changeTasks}
-									addNewTask={props.addNewTask}
-									deleteTask={props.deleteTask}
-									changeStatus={props.changeStatus}
-									filterTask={tl.filterTask}
-									removeTodoList={props.removeTodoList}
-									changeItemTask={props.changeItemTask} changeTodoListTitle={props.changeTodoListTitle}/>
+					<Todo id={tl.id}
+								title={tl.title}
+								tasks={newFilteredTasks}
+								changeTasks={props.changeTasks}
+								addNewTask={props.addNewTask}
+								deleteTask={props.deleteTask}
+								changeStatus={props.changeStatus}
+								filterTask={tl.filterTask}
+								removeTodoList={props.removeTodoList}
+								changeItemTask={props.changeItemTask} changeTodoListTitle={props.changeTodoListTitle}/>
 				</Paper>
 			</Grid>
 
@@ -108,4 +106,4 @@ export const PreJunior = (props: PropsType) => {
 			<PresentationComponent/>
 		</div>
 	)
-}
+})

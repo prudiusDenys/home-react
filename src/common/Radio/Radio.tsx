@@ -7,7 +7,7 @@ type PropsType = {
 	onChangeRadio: (id: string, checked: boolean) => void
 }
 
-export const Radio = (props: PropsType) => {
+export const Radio = React.memo(function (props: PropsType){
 
 	return (
 		<div className={classes.radioWrapper}>
@@ -32,4 +32,4 @@ export const Radio = (props: PropsType) => {
 			})}
 		</div>
 	)
-}
+})

@@ -8,7 +8,8 @@ type PropsType = {
 	addItem: (title: string) => void
 }
 
-export const AddItemForm = (props: PropsType) => {
+export const AddItemForm = React.memo(function (props: PropsType){
+	console.log('itemForm')
 	let [value, setValue] = useState('')
 	let [error, setError] = useState<string | null>(null);
 
@@ -35,19 +36,19 @@ export const AddItemForm = (props: PropsType) => {
 
 	return (
 		<Paper>
-		<div className={classes.itemForm}>
-			<div className={classes.wrapper}>
-				<TextField error={!!error}
-									 value={value}
-									 onChange={onChangeHandler}
-									 onKeyPress={onKeyPressHandler}
-									 label={'Add new TodoList'}
-									 helperText={!!error ? "Incorrect entry." : ''}/>
-				<IconButton onClick={addTaskHandler} color={"primary"}>
-					<PlaylistAdd/>
-				</IconButton>
+			<div className={classes.itemForm}>
+				<div className={classes.wrapper}>
+					<TextField error={!!error}
+										 value={value}
+										 onChange={onChangeHandler}
+										 onKeyPress={onKeyPressHandler}
+										 label={'Add new TodoList'}
+										 helperText={!!error ? "Incorrect entry." : ''}/>
+					<IconButton onClick={addTaskHandler} color={"primary"}>
+						<PlaylistAdd/>
+					</IconButton>
+				</div>
 			</div>
-		</div>
 		</Paper>
 	)
-}
+})
