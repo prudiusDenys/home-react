@@ -48,7 +48,7 @@ export const homeWorkReducer = (state: Array<StateType>, action: ActionsType): A
 			return [...state.filter(p => p.age >= 18)]
 		}
 		default:
-			throw new Error('You passed a wrong action type');
+			return state
 	}
 	return []
 }
