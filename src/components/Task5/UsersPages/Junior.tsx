@@ -3,6 +3,7 @@ import {NavBar} from "../NavBar";
 import {PresCompForEditableSpan} from "../../Task6/PresCompForEditableSpan";
 import {Select} from "../../../common/Select/Select";
 import {Radio} from "../../../common/Radio/Radio";
+import {People} from "../../task 8/People";
 
 export type CountriesType = {
 	value: string
@@ -57,12 +58,18 @@ export const Junior = () => {
 		}
 	}
 
+	////////////// TASK 8 /////////////////////////////////
+
+
+
 	return (
 		<div>
 			<NavBar/>
 			<PresCompForEditableSpan/>
 			<Select value={value} items={countries} onChange={onChange}/>
 			<Radio items={contactMethods} onChangeRadio={onChangeRadio}/>
+			<People/>
 		</div>
 	)
 }
+
