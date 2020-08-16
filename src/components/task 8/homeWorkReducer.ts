@@ -1,3 +1,8 @@
+enum ActionType {
+	SORT = 'SORT',
+	CHECK = 'CHECK'
+}
+
 type StateType = {
 	id: string
 	name: string
@@ -5,21 +10,21 @@ type StateType = {
 }
 type ActionsType = SortPeopleUpType | SortPeopleDownType | GetAdultPeopleType
 type SortPeopleUpType = {
-	type: 'SORT',
+	type: ActionType.SORT,
 	payload: 'up'
 }
 type SortPeopleDownType = {
-	type: 'SORT'
+	type: ActionType.SORT
 	payload: 'down'
 }
 type GetAdultPeopleType = {
-	type: 'CHECK'
+	type: ActionType.CHECK
 	payload: 18
 }
 
 export const homeWorkReducer = (state: Array<StateType>, action: ActionsType): Array<StateType> => {
 	switch (action.type) {
-		case "SORT": {
+		case ActionType.SORT: {
 			if (action.payload == 'up') {
 				return [...state.sort((a, b): number => {
 					if (a.name > b.name) {
@@ -44,7 +49,7 @@ export const homeWorkReducer = (state: Array<StateType>, action: ActionsType): A
 			}
 			break;
 		}
-		case "CHECK": {
+		case ActionType.CHECK: {
 			return [...state.filter(p => p.age >= 18)]
 		}
 		default:
@@ -54,11 +59,11 @@ export const homeWorkReducer = (state: Array<StateType>, action: ActionsType): A
 }
 
 export const sortPeopleUpAC = (payload: 'up'): SortPeopleUpType => {
-	return {type: 'SORT', payload}
+	return {type: ActionType.SORT, payload}
 }
 export const sortPeopleDownAC = (payload: 'down'): SortPeopleDownType => {
-	return {type: 'SORT', payload}
+	return {type: ActionType.SORT, payload}
 }
 export const getAdultPeopleAC = (payload: 18): GetAdultPeopleType => {
-	return {type: 'CHECK', payload}
+	return {type: ActionType.CHECK, payload}
 }

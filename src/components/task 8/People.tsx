@@ -1,33 +1,36 @@
-import React, {useState} from "react";
+import React, {useReducer} from "react";
 import classes from "./People.module.css";
 import {Button} from "../../common/Button/Button";
 import {getAdultPeopleAC, homeWorkReducer, sortPeopleDownAC, sortPeopleUpAC} from "./homeWorkReducer";
 
 export const People = () => {
 
-	const [people, setPeople] = useState([
+
+	const people = [
 		{id: '1', name: 'Denis', age: 27},
 		{id: '2', name: 'Andrey', age: 30},
 		{id: '3', name: 'Ivan', age: 13},
 		{id: '4', name: 'Misha', age: 9},
 		{id: '5', name: 'Katya', age: 17},
 		{id: '6', name: 'Sasha', age: 18},
-	])
+	]
 
-	const person = people.map(p => {
+	const [state, dispatch] = useReducer(homeWorkReducer, people)
+
+	const person = state.map(p => {
 		return (
 			<div key={p.id}>{p.name} {p.age}</div>
 		)
 	})
 
 	const sortPeopleUpHandler = () => {
-		setPeople(homeWorkReducer(people, sortPeopleUpAC('up')))
+		dispatch(sortPeopleUpAC('up'))
 	}
 	const sortPeopleDownHandler = () => {
-		setPeople(homeWorkReducer(people, sortPeopleDownAC('down')))
+		dispatch(sortPeopleDownAC('down'))
 	}
 	const getAdultPeopleHandler = () => {
-		setPeople(homeWorkReducer(people, getAdultPeopleAC(18)))
+		dispatch(getAdultPeopleAC(18))
 	}
 
 	return (
