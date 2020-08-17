@@ -5,7 +5,6 @@ import {getAdultPeopleAC, homeWorkReducer, sortPeopleDownAC, sortPeopleUpAC} fro
 
 export const People = () => {
 
-
 	const people = [
 		{id: '1', name: 'Denis', age: 27},
 		{id: '2', name: 'Andrey', age: 30},

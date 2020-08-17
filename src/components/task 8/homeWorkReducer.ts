@@ -10,15 +10,15 @@ type StateType = {
 }
 type ActionsType = SortPeopleUpType | SortPeopleDownType | GetAdultPeopleType
 type SortPeopleUpType = {
-	type: ActionType.SORT,
+	type: typeof ActionType.SORT
 	payload: 'up'
 }
 type SortPeopleDownType = {
-	type: ActionType.SORT
+	type: typeof ActionType.SORT
 	payload: 'down'
 }
 type GetAdultPeopleType = {
-	type: ActionType.CHECK
+	type: typeof ActionType.CHECK
 	payload: 18
 }
 
