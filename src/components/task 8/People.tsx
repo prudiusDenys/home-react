@@ -1,7 +1,7 @@
 import React, {useReducer} from "react";
 import classes from "./People.module.css";
 import {Button} from "../../common/Button/Button";
-import {getAdultPeopleAC, homeWorkReducer, sortPeopleDownAC, sortPeopleUpAC} from "./homeWorkReducer";
+import {getAdultPeopleAC, homeWorkReducer, sortPeopleAC} from "./homeWorkReducer";
 
 export const People = () => {
 
@@ -23,10 +23,10 @@ export const People = () => {
 	})
 
 	const sortPeopleUpHandler = () => {
-		dispatch(sortPeopleUpAC('up'))
+		dispatch(sortPeopleAC('up'))
 	}
 	const sortPeopleDownHandler = () => {
-		dispatch(sortPeopleDownAC('down'))
+		dispatch(sortPeopleAC('down'))
 	}
 	const getAdultPeopleHandler = () => {
 		dispatch(getAdultPeopleAC(18))

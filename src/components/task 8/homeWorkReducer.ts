@@ -8,14 +8,10 @@ type StateType = {
 	name: string
 	age: number
 }
-type ActionsType = SortPeopleUpType | SortPeopleDownType | GetAdultPeopleType
+type ActionsType = SortPeopleUpType | GetAdultPeopleType
 type SortPeopleUpType = {
 	type: typeof ActionType.SORT
-	payload: 'up'
-}
-type SortPeopleDownType = {
-	type: typeof ActionType.SORT
-	payload: 'down'
+	payload: 'up' | 'down'
 }
 type GetAdultPeopleType = {
 	type: typeof ActionType.CHECK
@@ -58,10 +54,7 @@ export const homeWorkReducer = (state: Array<StateType>, action: ActionsType): A
 	return []
 }
 
-export const sortPeopleUpAC = (payload: 'up'): SortPeopleUpType => {
-	return {type: ActionType.SORT, payload}
-}
-export const sortPeopleDownAC = (payload: 'down'): SortPeopleDownType => {
+export const sortPeopleAC = (payload: 'up' | 'down'): SortPeopleUpType => {
 	return {type: ActionType.SORT, payload}
 }
 export const getAdultPeopleAC = (payload: 18): GetAdultPeopleType => {
