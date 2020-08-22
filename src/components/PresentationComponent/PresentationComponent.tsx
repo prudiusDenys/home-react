@@ -1,4 +1,4 @@
-import React, {useState, KeyboardEvent, ChangeEvent,FocusEvent} from "react";
+import React, {useState, KeyboardEvent, ChangeEvent} from "react";
 import classes from "./PresentationComponent.module.css";
 import {Input} from "../../common/Input/Input";
 import {Button} from "../../common/Button/Button";
@@ -7,7 +7,6 @@ import {Checkbox} from "../../common/Checkbox/Checkbox";
 
 export const PresentationComponent = () => {
 
-	const type = 'text'
 	let [valueInp, setValueInp] = useState('')
 	let [correctField, setCorrectField] = useState(true)
 	let [checkbox, setCheckbox] = useState(false)

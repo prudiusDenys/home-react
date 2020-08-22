@@ -21,7 +21,7 @@ type GetAdultPeopleType = {
 export const homeWorkReducer = (state: Array<StateType>, action: ActionsType): Array<StateType> => {
 	switch (action.type) {
 		case ActionType.SORT: {
-			if (action.payload == 'up') {
+			if (action.payload === 'up') {
 				return [...state.sort((a, b): number => {
 					if (a.name > b.name) {
 						return 1

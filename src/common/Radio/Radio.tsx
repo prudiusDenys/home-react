@@ -18,7 +18,7 @@ export const Radio = React.memo(function (props: PropsType){
 				}
 
 				return (
-					<div className={classes.inputWrapper}>
+					<div key={i.id} className={classes.inputWrapper}>
 						<input key={i.id}
 									 id = {i.id}
 									 onChange={onChangeHandler}
