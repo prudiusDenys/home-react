@@ -128,11 +128,11 @@ function App() {
 		alert(`Hello ${value}`);
 		let newName = [...namesData, {id: v1(), name: value}]
 		setNamesData(newName)
-	},[])
+	}, [])
 	let onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
 		setValueInp(e.currentTarget.value)
 		setCorrectField(true)
-	},[])
+	}, [])
 	let onKeyPressHandler = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
 		if (e.charCode === 13 && e.currentTarget.value.trim() !== '') {
 			showMessage(e.currentTarget.value.trim())
@@ -141,7 +141,7 @@ function App() {
 			setCorrectField(false)
 			setValueInp('')
 		}
-	},[])
+	}, [])
 	let onClickBtnHandler = useCallback(() => {
 		if (valueInp.trim() !== '') {
 			showMessage(valueInp.trim())
@@ -150,7 +150,7 @@ function App() {
 			setCorrectField(false)
 			setValueInp('')
 		}
-	},[])
+	}, [])
 
 	return (
 		<HashRouter>

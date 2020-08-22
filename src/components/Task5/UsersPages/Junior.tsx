@@ -4,6 +4,7 @@ import {PresCompForEditableSpan} from "../../Task6/PresCompForEditableSpan";
 import {Select} from "../../../common/Select/Select";
 import {Radio} from "../../../common/Radio/Radio";
 import {People} from "../../task 8/People";
+import {Time} from "../../Task9/Date/Date";
 
 export type CountriesType = {
 	value: string
@@ -69,6 +70,7 @@ export const Junior = () => {
 			<Select value={value} items={countries} onChange={onChange}/>
 			<Radio items={contactMethods} onChangeRadio={onChangeRadio}/>
 			<People/>
+			<Time/>
 		</div>
 	)
 }
