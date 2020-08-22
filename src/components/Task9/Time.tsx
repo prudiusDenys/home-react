@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import classes from "./Date.module.css";
-import {Button} from "../../../common/Button/Button";
+import classes from "./Time.module.css";
+import {Button} from "../../common/Button/Button";
 import moment from "moment";
 import {Tooltip} from "@material-ui/core";
 
