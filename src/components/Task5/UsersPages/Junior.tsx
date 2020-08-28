@@ -1,10 +1,16 @@
 import React, {useState} from "react";
+import classes from "./Junior.module.css";
 import {NavBar} from "../NavBar";
 import {PresCompForEditableSpan} from "../../Task6/PresCompForEditableSpan";
 import {Select} from "../../../common/Select/Select";
 import {Radio} from "../../../common/Radio/Radio";
 import {People} from "../../task 8/People";
 import {Time} from "../../Task9/Time";
+import {Button} from "../../../common/Button/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {setLoading, StateType} from "../../state/loading-reducer";
+import {AppRootState} from "../../state/store";
+import {Preloader} from "../../../common/Preloader/Preloader";
 
 export type CountriesType = {
 	value: string
@@ -59,18 +65,34 @@ export const Junior = () => {
 		}
 	}
 
-	////////////// TASK 8 /////////////////////////////////
+	//////////////////// TASK 10 ////////////////
 
+	const dispatch = useDispatch()
+	const loading = useSelector<AppRootState, StateType>(state => state.loading)
+
+	const getLoading = () => {
+		dispatch(setLoading(true))
+		setTimeout(() => dispatch(setLoading(false)), 3000)
+	}
 
 
 	return (
 		<div>
-			<NavBar/>
-			<PresCompForEditableSpan/>
-			<Select value={value} items={countries} onChange={onChange}/>
-			<Radio items={contactMethods} onChangeRadio={onChangeRadio}/>
-			<People/>
-			<Time/>
+			{!loading.loading ?
+				<>
+					<NavBar/>
+					<PresCompForEditableSpan/>
+					<Select value={value} items={countries} onChange={onChange}/>
+					<Radio items={contactMethods} onChangeRadio={onChangeRadio}/>
+					<People/>
+					<Time/>
+					<div className={classes.btn}>
+						<Button onClickBtnHandler={getLoading} title={'loading'}/>
+					</div>
+				</>
+				:
+				<Preloader/>
+			}
 		</div>
 	)
 }
