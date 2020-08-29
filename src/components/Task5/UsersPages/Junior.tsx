@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useCallback, useState} from "react";
 import classes from "./Junior.module.css";
 import {NavBar} from "../NavBar";
 import {PresCompForEditableSpan} from "../../Task6/PresCompForEditableSpan";
@@ -8,7 +8,7 @@ import {People} from "../../task 8/People";
 import {Time} from "../../Task9/Time";
 import {Button} from "../../../common/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {setLoading, StateType} from "../../state/loading-reducer";
+import {setLoading} from "../../state/loading-reducer";
 import {AppRootState} from "../../state/store";
 import {Preloader} from "../../../common/Preloader/Preloader";
 
@@ -70,10 +70,10 @@ export const Junior = () => {
 	const dispatch = useDispatch()
 	const loading = useSelector<AppRootState, boolean>(state => state.loading.loading)
 
-	const getLoading = () => {
+	const getLoading = useCallback(() => {
 		dispatch(setLoading(true))
 		setTimeout(() => dispatch(setLoading(false)), 3000)
-	}
+	},[dispatch])
 
 	return (
 		<div>
