@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import classes from "./Junior.module.css";
 import {NavBar} from "../NavBar";
 import {PresCompForEditableSpan} from "../../Task6/PresCompForEditableSpan";
@@ -68,17 +68,16 @@ export const Junior = () => {
 	//////////////////// TASK 10 ////////////////
 
 	const dispatch = useDispatch()
-	const loading = useSelector<AppRootState, StateType>(state => state.loading)
+	const loading = useSelector<AppRootState, boolean>(state => state.loading.loading)
 
 	const getLoading = () => {
 		dispatch(setLoading(true))
 		setTimeout(() => dispatch(setLoading(false)), 3000)
 	}
 
-
 	return (
 		<div>
-			{!loading.loading ?
+			{!loading ?
 				<>
 					<NavBar/>
 					<PresCompForEditableSpan/>
@@ -96,4 +95,3 @@ export const Junior = () => {
 		</div>
 	)
 }
-

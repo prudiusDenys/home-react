@@ -14,7 +14,7 @@ const initialState = {
 }
 
 
-export const loadingReducer = (state:StateType = initialState, action: ActionsType): StateType => {
+export const loadingReducer = (state: StateType = initialState, action: ActionsType): StateType => {
 	switch (action.type) {
 		case SET_LOADING: {
 			return {
