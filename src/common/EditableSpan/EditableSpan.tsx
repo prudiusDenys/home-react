@@ -13,8 +13,8 @@ type PropsType = {
 	onKeyPressHandler: (e: KeyboardEvent<HTMLInputElement>)=>void
 }
 
-export const EditableSpan = (props: PropsType) => {
-
+export const EditableSpan = React.memo((props: PropsType) => {
+	console.log('editableSpan')
 	return (
 		<div className={classes.editSpanWrapper}>
 			{
@@ -31,4 +31,4 @@ export const EditableSpan = (props: PropsType) => {
 			}
 		</div>
 	)
-}
+})

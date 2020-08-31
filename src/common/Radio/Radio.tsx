@@ -8,7 +8,7 @@ type PropsType = {
 }
 
 export const Radio = React.memo(function (props: PropsType){
-
+	console.log('radio')
 	return (
 		<div className={classes.radioWrapper}>
 			{props.items.map(i => {

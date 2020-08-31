@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from "redux";
-import {loadingReducer} from "./loading-reducer";
+import {loadingReducer} from "../reducers/loading-reducer";
 
 const rootReducer = combineReducers({
 	loading: loadingReducer

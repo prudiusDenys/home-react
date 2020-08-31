@@ -6,7 +6,8 @@ type PropsType = {
 	onClickCheckbox: ()=>void
 }
 
-export const Checkbox = (props: PropsType) => {
+export const Checkbox = React.memo((props: PropsType) => {
+	console.log('checkbox')
 	return (
 		<div className={classes.wrapper}>
 			<div className={classes.box} onClick={props.onClickCheckbox}>
@@ -19,4 +20,4 @@ export const Checkbox = (props: PropsType) => {
 			</div>
 		</div>
 	)
-}
+})

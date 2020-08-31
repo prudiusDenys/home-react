@@ -10,6 +10,8 @@ type PropsType = {
 
 export const Select = React.memo(function (props: PropsType){
 
+	console.log('select')
+
 	const [collapsed, setCollapsed] = useState(true);
 	const [hoveredElement, setHoveredElement] = useState(props.value);
 

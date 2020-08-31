@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useCallback, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useCallback, useMemo, useState} from 'react';
 import './App.css';
 import {v1} from "uuid";
 import {HashRouter, Route} from "react-router-dom";
@@ -35,11 +35,15 @@ export type TaskStateType = {
 
 function App() {
 
-	const dialogsData: Array<dialogsDataType> = [
-		{id: 1, name: 'Denis', text: 'npm start нажимал ?'},
-		{id: 2, name: 'Andrey', text: 'Да, нажал!'},
-		{id: 3, name: 'Ivan', text: 'Что такое npm ?'}
-	];
+	const dialogsData: Array<dialogsDataType> = useMemo(()=>{
+		return(
+			[
+				{id: 1, name: 'Denis', text: 'npm start нажимал ?'},
+				{id: 2, name: 'Andrey', text: 'Да, нажал!'},
+				{id: 3, name: 'Ivan', text: 'Что такое npm ?'}
+			]
+		)
+	},[])
 
 	// =============================== HOME WORK NUMBER 2 ====================================
 
@@ -128,11 +132,11 @@ function App() {
 		alert(`Hello ${value}`);
 		let newName = [...namesData, {id: v1(), name: value}]
 		setNamesData(newName)
-	}, [])
+	}, [namesData])
 	let onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
 		setValueInp(e.currentTarget.value)
 		setCorrectField(true)
-	}, [])
+	}, [correctField])
 	let onKeyPressHandler = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
 		if (e.charCode === 13 && e.currentTarget.value.trim() !== '') {
 			showMessage(e.currentTarget.value.trim())
@@ -141,7 +145,7 @@ function App() {
 			setCorrectField(false)
 			setValueInp('')
 		}
-	}, [])
+	}, [valueInp])
 	let onClickBtnHandler = useCallback(() => {
 		if (valueInp.trim() !== '') {
 			showMessage(valueInp.trim())
@@ -150,7 +154,7 @@ function App() {
 			setCorrectField(false)
 			setValueInp('')
 		}
-	}, [])
+	}, [valueInp])
 
 	return (
 		<HashRouter>

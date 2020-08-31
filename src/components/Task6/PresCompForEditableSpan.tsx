@@ -5,7 +5,7 @@ import {Button} from "../../common/Button/Button";
 import {restoreState, saveState} from "../../LocalStorageFunctions/LocalStorageFunctions";
 
 
-export const PresCompForEditableSpan = () => {
+export const PresCompForEditableSpan = React.memo(() => {
 
 	let [editMode, setEditMode] = useState(false);
 	let [valueInp, setValueInp] = useState('');
@@ -52,4 +52,4 @@ export const PresCompForEditableSpan = () => {
 			</div>
 		</div>
 	)
-}
+})

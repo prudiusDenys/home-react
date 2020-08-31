@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 import classes from "./Junior.module.css";
 import {NavBar} from "../NavBar";
 import {PresCompForEditableSpan} from "../../Task6/PresCompForEditableSpan";
@@ -8,9 +8,11 @@ import {People} from "../../task 8/People";
 import {Time} from "../../Task9/Time";
 import {Button} from "../../../common/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {setLoading} from "../../state/loading-reducer";
-import {AppRootState} from "../../state/store";
+import {setLoading} from "../../../reducers/loading-reducer";
+import {AppRootState} from "../../../store/store";
 import {Preloader} from "../../../common/Preloader/Preloader";
+import {Range} from "../../../common/Range/Range";
+import {RangeDoubleSlider} from "../../../common/RangeDoubleSlider/RangeDoubleSlider";
 
 export type CountriesType = {
 	value: string
@@ -25,18 +27,22 @@ export type ContactMethodType = {
 
 export const Junior = () => {
 
-	const countries: Array<CountriesType> = [
-		{value: '1', country: 'Belarus'},
-		{value: '2', country: 'Russia'},
-		{value: '3', country: 'Ukraine'},
-		{value: '4', country: 'Italy'},
-	]
+	const countries: Array<CountriesType> = useMemo(()=>{
+		return (
+			[
+				{value: '1', country: 'Belarus'},
+				{value: '2', country: 'Russia'},
+				{value: '3', country: 'Ukraine'},
+				{value: '4', country: 'Italy'},
+			]
+		)
+	},[])
 
 	const [value, setValue] = useState<string>(countries[0].value);
 
-	const onChange = (selectValue: string) => {
+	const onChange = useCallback((selectValue: string) => {
 		setValue(selectValue);
-	}
+	}, [value])
 
 /////////////////// RADIO ///////////////////////////////
 
@@ -47,7 +53,7 @@ export const Junior = () => {
 		{id: '4', name: 'contact', value: 'Fax', checked: false},
 	])
 
-	const onChangeRadio = (id: string, checked: boolean) => {
+	const onChangeRadio = useCallback((id: string, checked: boolean) => {
 		const copyContactMethods = contactMethods.map(r => {
 			if (r.checked) {
 				return {
@@ -63,7 +69,7 @@ export const Junior = () => {
 			contactMethod.checked = checked
 			setContactMethods([...copyContactMethods])
 		}
-	}
+	}, [contactMethods])
 
 	//////////////////// TASK 10 ////////////////
 
@@ -73,12 +79,21 @@ export const Junior = () => {
 	const getLoading = useCallback(() => {
 		dispatch(setLoading(true))
 		setTimeout(() => dispatch(setLoading(false)), 3000)
-	},[dispatch])
+	}, [dispatch])
+
+	/////////////////// TASK 11 /////////////////
+
+	const [rangeValue, setRangeValue] = useState('50')
+
+	const onRangeChange = useCallback((value: string) => {
+		setRangeValue(value)
+	}, [rangeValue])
+
 
 	return (
 		<div>
 			{!loading ?
-				<>
+				<div>
 					<NavBar/>
 					<PresCompForEditableSpan/>
 					<Select value={value} items={countries} onChange={onChange}/>
@@ -88,7 +103,11 @@ export const Junior = () => {
 					<div className={classes.btn}>
 						<Button onClickBtnHandler={getLoading} title={'loading'}/>
 					</div>
-				</>
+					<div className={classes.range}>
+						<Range minValue={'0'} maxValue={'100'} value={rangeValue} step={'10'} onChange={onRangeChange}/>
+					</div>
+							<RangeDoubleSlider/>
+				</div>
 				:
 				<Preloader/>
 			}
