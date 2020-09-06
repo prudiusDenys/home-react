@@ -14,9 +14,9 @@ import {Preloader} from "../../../common/Preloader/Preloader";
 import {Range} from "../../../common/Range/Range";
 import {RangeDoubleSlider} from "../../../common/RangeDoubleSlider/RangeDoubleSlider";
 
-export type CountriesType = {
+export type ItemsType = {
 	value: string
-	country: string
+	item: string
 }
 export type ContactMethodType = {
 	id: string
@@ -27,13 +27,13 @@ export type ContactMethodType = {
 
 export const Junior = () => {
 
-	const countries: Array<CountriesType> = useMemo(()=>{
+	const countries: Array<ItemsType> = useMemo(()=>{
 		return (
 			[
-				{value: '1', country: 'Belarus'},
-				{value: '2', country: 'Russia'},
-				{value: '3', country: 'Ukraine'},
-				{value: '4', country: 'Italy'},
+				{value: '1', item: 'Belarus'},
+				{value: '2', item: 'Russia'},
+				{value: '3', item: 'Ukraine'},
+				{value: '4', item: 'Italy'},
 			]
 		)
 	},[])

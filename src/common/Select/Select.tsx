@@ -1,10 +1,10 @@
 import React, {useState, KeyboardEvent, useEffect} from "react";
 import classes from "./Select.module.css";
-import {CountriesType} from "../../components/Task5/UsersPages/Junior";
+import {ItemsType} from "../../components/Task5/UsersPages/Junior";
 
 type PropsType = {
 	value: string
-	items: Array<CountriesType>
+	items: Array<ItemsType>
 	onChange: (selectValue: string) => void
 }
 
@@ -62,7 +62,7 @@ export const Select = React.memo(function (props: PropsType){
 			<div className={(hoveredItem === c) ? `${classes.country} ${classes.active}` : classes.country}
 					 key={c.value}
 					 onMouseDown={onMouseDownHandler}
-					 onMouseEnter={onMouseEnterHandler}>{c.country}
+					 onMouseEnter={onMouseEnterHandler}>{c.item}
 			</div>
 		)
 	})
@@ -71,7 +71,7 @@ export const Select = React.memo(function (props: PropsType){
 			<h3 className={classes.active}
 					tabIndex={0}
 					onClick={onClickHandler}
-					onBlur={onBlurHandler}>{selectedItem && selectedItem.country}</h3>
+					onBlur={onBlurHandler}>{selectedItem && selectedItem.item}</h3>
 			{
 				!collapsed &&
         <div>
