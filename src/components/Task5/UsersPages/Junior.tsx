@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useState} from "react";
+import React, {useCallback, useContext, useMemo, useState} from "react";
 import classes from "./Junior.module.css";
 import {NavBar} from "../NavBar";
 import {PresCompForEditableSpan} from "../../Task6/PresCompForEditableSpan";
@@ -13,6 +13,7 @@ import {AppRootState} from "../../../store/store";
 import {Preloader} from "../../../common/Preloader/Preloader";
 import {Range} from "../../../common/Range/Range";
 import {RangeDoubleSlider} from "../../../common/RangeDoubleSlider/RangeDoubleSlider";
+import {ThemeContext} from "../../../themes/themes";
 
 export type ItemsType = {
 	value: string
@@ -26,6 +27,8 @@ export type ContactMethodType = {
 }
 
 export const Junior = () => {
+
+	const theme = useContext(ThemeContext)
 
 	const countries: Array<ItemsType> = useMemo(()=>{
 		return (
@@ -89,9 +92,8 @@ export const Junior = () => {
 		setRangeValue(value)
 	}, [rangeValue])
 
-
 	return (
-		<div>
+		<div style={theme}>
 			{!loading ?
 				<div>
 					<NavBar/>

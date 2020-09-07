@@ -15,6 +15,7 @@ body {
   height: 100%;
   position: relative;
 }
+
 html.lock,
 body.lock {
   overflow: hidden;
@@ -43,13 +44,14 @@ li {
   margin: 0 auto;
   padding: 0 10px;
 }
-.inputWrapper{
+
+.inputWrapper {
   width: 400px;
   display: flex;
   justify-content: space-around;
   margin-bottom: 20px;
 }
 
-.todoListWrapper{
+.todoListWrapper {
   margin-left: 100px;
 }

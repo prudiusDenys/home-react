@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useCallback, useMemo, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useCallback, useContext, useMemo, useState} from 'react';
 import './App.css';
 import {v1} from "uuid";
 import {HashRouter, Route} from "react-router-dom";
@@ -6,6 +6,9 @@ import {PreJunior} from "./components/Task5/UsersPages/PreJunior";
 import {Junior} from "./components/Task5/UsersPages/Junior";
 import {JuniorPlus} from "./components/Task5/UsersPages/JuniorPlus";
 import {Home} from "./components/Task5/UsersPages/Home";
+import {useSelector} from "react-redux";
+import {AppRootState} from "./store/store";
+import {ThemeType, ThemeContext} from "./themes/themes";
 
 export type dialogsDataType = {
 	id: number,
@@ -156,9 +159,13 @@ function App() {
 		}
 	}, [valueInp])
 
+const theme = useSelector<AppRootState, ThemeType>(state => state.webSiteTheme)
+	const theme1 = useContext(ThemeContext)
+
 	return (
+		<ThemeContext.Provider value={theme}>
 		<HashRouter>
-			<div>
+			<div style={{background: theme1.background}}>
 				<div className="App">
 					<div className={'pages'}>
 						<Route exact path={'/'} render={() => <Home/>}/>
@@ -188,6 +195,7 @@ function App() {
 				</div>
 			</div>
 		</HashRouter>
+			</ThemeContext.Provider>
 	);
 }
 

@@ -1,36 +1,31 @@
-type StateType = {
-	backgroundColor: string
-}
-type ActionsType = SetThemeType
+import {darkTheme, greenTheme, lightTheme, ThemeType} from "../themes/themes";
+
 type SetThemeType = {
 	type: typeof SET_THEME
 	value: string
 }
-
 const SET_THEME = 'setTheme';
 
-let initialState = document.body.style.backgroundColor = 'white';
 
-export const themeReducer = (state: any = initialState, action: ActionsType) => {
-	debugger
+export const themeReducer = (state:ThemeType = lightTheme, action: SetThemeType):ThemeType => {
 	switch (action.type) {
 		case SET_THEME: {
 			if (action.value === '1') {
-				return document.body.style.backgroundColor = 'white';
+				return lightTheme
 			}
 			if (action.value === '2') {
-				return document.body.style.backgroundColor = 'black';
+				return darkTheme
 			}
 			if (action.value === '3') {
-				return document.body.style.backgroundColor = 'green';
+				return greenTheme
 			}
 			break
 		}
 		default:
 			return state
 	}
+	return state
 }
-
 
 export const setThemeAC = (value: string): SetThemeType => {
 	return {type: SET_THEME, value}

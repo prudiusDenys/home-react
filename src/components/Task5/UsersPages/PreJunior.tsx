@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent} from "react";
+import React, {ChangeEvent, KeyboardEvent, useContext} from "react";
 import classes from "./PreJunior.module.css";
 import {NavBar} from "../NavBar";
 import {dialogsDataType, FilterTaskType, NamesData, TaskStateType, TodoListType} from "../../../App";
@@ -10,6 +10,7 @@ import {PresentationComponent} from "../../PresentationComponent/PresentationCom
 import Todo from "../../Todo/Todo";
 import {AddItemForm} from "../../Todo/AddItemForm/AddItemForm";
 import {Grid, Paper} from "@material-ui/core";
+import {ThemeContext} from "../../../themes/themes";
 
 type PropsType = {
 	dialogsData: Array<dialogsDataType>
@@ -35,6 +36,8 @@ type PropsType = {
 }
 
 export const PreJunior = React.memo(function PreJunior(props: PropsType) {
+
+	const theme = useContext(ThemeContext)
 
 	let todoList = props.todoLists.map(tl => {
 
@@ -76,9 +79,8 @@ export const PreJunior = React.memo(function PreJunior(props: PropsType) {
 		)
 	})
 
-
 	return (
-		<div className={classes.wrapper}>
+		<div className={classes.wrapper} style={theme}>
 			<NavBar/>
 			<Dialogs dialogsData={props.dialogsData}/>
 
