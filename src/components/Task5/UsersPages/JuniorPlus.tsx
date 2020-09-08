@@ -21,6 +21,7 @@ export const JuniorPlus = () => {
 			]
 		)
 	},[])
+
 	const [webSiteTheme, setWebSiteTheme] = useState<string>(themes[0].value);
 	const onChange = useCallback((selectValue: string):void => {
 		setWebSiteTheme(selectValue)

@@ -1,3 +1,6 @@
+.juniorPlus{
+  min-height: 100vh;
+}
 .container{
   width: 90%;
   margin: 0 auto;

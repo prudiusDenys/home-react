@@ -10,7 +10,6 @@ type PropsType = {
 }
 
 export const Range = React.memo((props: PropsType) => {
-	console.log('range')
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		props.onChange(e.currentTarget.value)
 	}

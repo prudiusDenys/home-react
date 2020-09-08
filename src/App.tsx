@@ -160,12 +160,11 @@ function App() {
 	}, [valueInp])
 
 const theme = useSelector<AppRootState, ThemeType>(state => state.webSiteTheme)
-	const theme1 = useContext(ThemeContext)
 
 	return (
 		<ThemeContext.Provider value={theme}>
 		<HashRouter>
-			<div style={{background: theme1.background}}>
+			<div>
 				<div className="App">
 					<div className={'pages'}>
 						<Route exact path={'/'} render={() => <Home/>}/>

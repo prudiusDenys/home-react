@@ -19,12 +19,11 @@ export const themeReducer = (state:ThemeType = lightTheme, action: SetThemeType)
 			if (action.value === '3') {
 				return greenTheme
 			}
-			break
+			return state
 		}
 		default:
 			return state
 	}
-	return state
 }
 
 export const setThemeAC = (value: string): SetThemeType => {

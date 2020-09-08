@@ -12,7 +12,6 @@ import {setLoading} from "../../../reducers/loading-reducer";
 import {AppRootState} from "../../../store/store";
 import {Preloader} from "../../../common/Preloader/Preloader";
 import {Range} from "../../../common/Range/Range";
-import {RangeDoubleSlider} from "../../../common/RangeDoubleSlider/RangeDoubleSlider";
 import {ThemeContext} from "../../../themes/themes";
 
 export type ItemsType = {
@@ -108,7 +107,6 @@ export const Junior = () => {
 					<div className={classes.range}>
 						<Range minValue={'0'} maxValue={'100'} value={rangeValue} step={'10'} onChange={onRangeChange}/>
 					</div>
-							<RangeDoubleSlider/>
 				</div>
 				:
 				<Preloader/>
